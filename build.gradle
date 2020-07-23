@@ -1,0 +1,32 @@
+apply plugin: 'maven'
+apply plugin: 'java'
+
+group 'com.sdqube'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def protobufVersion = '1.19.0'
+def sl4jVersion = '1.7.25'
+def logbackVersion = '1.2.3'
+def commonConfigVersion = '2.4'
+def jodaVersion = '2.10.1'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile group: 'io.grpc', name: 'grpc-protobuf', version: protobufVersion
+    compile group: 'io.grpc', name: 'grpc-netty-shaded', version: protobufVersion
+    compile group: 'io.grpc', name: 'grpc-stub', version: protobufVersion
+
+    compile group: 'org.slf4j', name: 'slf4j-api', version: sl4jVersion
+    runtime group: 'org.slf4j', name: 'log4j-over-slf4j', version: sl4jVersion
+
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+    runtime group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
+    compile group: 'org.apache.commons', name: 'commons-configuration2', version: commonConfigVersion
+    compile group: 'joda-time', name: 'joda-time', version: jodaVersion
+}
