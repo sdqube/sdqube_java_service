@@ -1,0 +1,1 @@
+# SDQube Java Service Dependency
