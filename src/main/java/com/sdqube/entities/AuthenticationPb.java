@@ -14,29 +14,191 @@ public final class AuthenticationPb {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code sdqube.entities.pb.RoleType}
+   */
+  public enum RoleType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>UNKNOWN_ROLE = 0;</code>
+     */
+    UNKNOWN_ROLE(0),
+    /**
+     * <code>SUPER_ADMIN = 1;</code>
+     */
+    SUPER_ADMIN(1),
+    /**
+     * <code>ADMIN = 2;</code>
+     */
+    ADMIN(2),
+    /**
+     * <code>MANAGER = 3;</code>
+     */
+    MANAGER(3),
+    /**
+     * <code>EMPLOYEE = 4;</code>
+     */
+    EMPLOYEE(4),
+    /**
+     * <code>TAX_ADVISOR = 5;</code>
+     */
+    TAX_ADVISOR(5),
+    /**
+     * <code>FINANCE_ADVISOR = 6;</code>
+     */
+    FINANCE_ADVISOR(6),
+    /**
+     * <code>ACCOUNTANT = 7;</code>
+     */
+    ACCOUNTANT(7),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_ROLE = 0;</code>
+     */
+    public static final int UNKNOWN_ROLE_VALUE = 0;
+    /**
+     * <code>SUPER_ADMIN = 1;</code>
+     */
+    public static final int SUPER_ADMIN_VALUE = 1;
+    /**
+     * <code>ADMIN = 2;</code>
+     */
+    public static final int ADMIN_VALUE = 2;
+    /**
+     * <code>MANAGER = 3;</code>
+     */
+    public static final int MANAGER_VALUE = 3;
+    /**
+     * <code>EMPLOYEE = 4;</code>
+     */
+    public static final int EMPLOYEE_VALUE = 4;
+    /**
+     * <code>TAX_ADVISOR = 5;</code>
+     */
+    public static final int TAX_ADVISOR_VALUE = 5;
+    /**
+     * <code>FINANCE_ADVISOR = 6;</code>
+     */
+    public static final int FINANCE_ADVISOR_VALUE = 6;
+    /**
+     * <code>ACCOUNTANT = 7;</code>
+     */
+    public static final int ACCOUNTANT_VALUE = 7;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static RoleType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static RoleType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_ROLE;
+        case 1: return SUPER_ADMIN;
+        case 2: return ADMIN;
+        case 3: return MANAGER;
+        case 4: return EMPLOYEE;
+        case 5: return TAX_ADVISOR;
+        case 6: return FINANCE_ADVISOR;
+        case 7: return ACCOUNTANT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<RoleType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        RoleType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<RoleType>() {
+            public RoleType findValueByNumber(int number) {
+              return RoleType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.sdqube.entities.AuthenticationPb.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final RoleType[] VALUES = values();
+
+    public static RoleType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private RoleType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:sdqube.entities.pb.RoleType)
+  }
+
   public interface UserOrBuilder extends
       // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.User)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string usernameEmail = 1;</code>
+     * <code>string username = 1;</code>
      */
-    java.lang.String getUsernameEmail();
+    java.lang.String getUsername();
     /**
-     * <code>string usernameEmail = 1;</code>
+     * <code>string username = 1;</code>
      */
     com.google.protobuf.ByteString
-        getUsernameEmailBytes();
+        getUsernameBytes();
 
     /**
-     * <code>string password = 2;</code>
+     * <code>string email = 2;</code>
      */
-    java.lang.String getPassword();
+    java.lang.String getEmail();
     /**
-     * <code>string password = 2;</code>
+     * <code>string email = 2;</code>
      */
     com.google.protobuf.ByteString
-        getPasswordBytes();
+        getEmailBytes();
+
+    /**
+     * <code>int64 createdAt = 3;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>int64 updatedAt = 4;</code>
+     */
+    long getUpdatedAt();
   }
   /**
    * <pre>
@@ -55,8 +217,10 @@ public final class AuthenticationPb {
       super(builder);
     }
     private User() {
-      usernameEmail_ = "";
-      password_ = "";
+      username_ = "";
+      email_ = "";
+      createdAt_ = 0L;
+      updatedAt_ = 0L;
     }
 
     @java.lang.Override
@@ -86,13 +250,23 @@ public final class AuthenticationPb {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              usernameEmail_ = s;
+              username_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              password_ = s;
+              email_ = s;
+              break;
+            }
+            case 24: {
+
+              createdAt_ = input.readInt64();
+              break;
+            }
+            case 32: {
+
+              updatedAt_ = input.readInt64();
               break;
             }
             default: {
@@ -127,72 +301,90 @@ public final class AuthenticationPb {
               com.sdqube.entities.AuthenticationPb.User.class, com.sdqube.entities.AuthenticationPb.User.Builder.class);
     }
 
-    public static final int USERNAMEEMAIL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object usernameEmail_;
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object username_;
     /**
-     * <code>string usernameEmail = 1;</code>
+     * <code>string username = 1;</code>
      */
-    public java.lang.String getUsernameEmail() {
-      java.lang.Object ref = usernameEmail_;
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        usernameEmail_ = s;
+        username_ = s;
         return s;
       }
     }
     /**
-     * <code>string usernameEmail = 1;</code>
+     * <code>string username = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getUsernameEmailBytes() {
-      java.lang.Object ref = usernameEmail_;
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        usernameEmail_ = b;
+        username_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int PASSWORD_FIELD_NUMBER = 2;
-    private volatile java.lang.Object password_;
+    public static final int EMAIL_FIELD_NUMBER = 2;
+    private volatile java.lang.Object email_;
     /**
-     * <code>string password = 2;</code>
+     * <code>string email = 2;</code>
      */
-    public java.lang.String getPassword() {
-      java.lang.Object ref = password_;
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        password_ = s;
+        email_ = s;
         return s;
       }
     }
     /**
-     * <code>string password = 2;</code>
+     * <code>string email = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getPasswordBytes() {
-      java.lang.Object ref = password_;
+        getEmailBytes() {
+      java.lang.Object ref = email_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        password_ = b;
+        email_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 3;
+    private long createdAt_;
+    /**
+     * <code>int64 createdAt = 3;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 4;
+    private long updatedAt_;
+    /**
+     * <code>int64 updatedAt = 4;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -209,11 +401,17 @@ public final class AuthenticationPb {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUsernameEmailBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, usernameEmail_);
+      if (!getUsernameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
-      if (!getPasswordBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
+      if (!getEmailBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, email_);
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(3, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(4, updatedAt_);
       }
       unknownFields.writeTo(output);
     }
@@ -224,11 +422,19 @@ public final class AuthenticationPb {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUsernameEmailBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, usernameEmail_);
+      if (!getUsernameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
       }
-      if (!getPasswordBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      if (!getEmailBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, email_);
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, updatedAt_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -246,10 +452,14 @@ public final class AuthenticationPb {
       com.sdqube.entities.AuthenticationPb.User other = (com.sdqube.entities.AuthenticationPb.User) obj;
 
       boolean result = true;
-      result = result && getUsernameEmail()
-          .equals(other.getUsernameEmail());
-      result = result && getPassword()
-          .equals(other.getPassword());
+      result = result && getUsername()
+          .equals(other.getUsername());
+      result = result && getEmail()
+          .equals(other.getEmail());
+      result = result && (getCreatedAt()
+          == other.getCreatedAt());
+      result = result && (getUpdatedAt()
+          == other.getUpdatedAt());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -261,10 +471,16 @@ public final class AuthenticationPb {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + USERNAMEEMAIL_FIELD_NUMBER;
-      hash = (53 * hash) + getUsernameEmail().hashCode();
-      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getEmail().hashCode();
+      hash = (37 * hash) + CREATEDAT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getCreatedAt());
+      hash = (37 * hash) + UPDATEDAT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUpdatedAt());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -402,9 +618,13 @@ public final class AuthenticationPb {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        usernameEmail_ = "";
+        username_ = "";
 
-        password_ = "";
+        email_ = "";
+
+        createdAt_ = 0L;
+
+        updatedAt_ = 0L;
 
         return this;
       }
@@ -432,8 +652,10 @@ public final class AuthenticationPb {
       @java.lang.Override
       public com.sdqube.entities.AuthenticationPb.User buildPartial() {
         com.sdqube.entities.AuthenticationPb.User result = new com.sdqube.entities.AuthenticationPb.User(this);
-        result.usernameEmail_ = usernameEmail_;
-        result.password_ = password_;
+        result.username_ = username_;
+        result.email_ = email_;
+        result.createdAt_ = createdAt_;
+        result.updatedAt_ = updatedAt_;
         onBuilt();
         return result;
       }
@@ -482,13 +704,19 @@ public final class AuthenticationPb {
 
       public Builder mergeFrom(com.sdqube.entities.AuthenticationPb.User other) {
         if (other == com.sdqube.entities.AuthenticationPb.User.getDefaultInstance()) return this;
-        if (!other.getUsernameEmail().isEmpty()) {
-          usernameEmail_ = other.usernameEmail_;
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
           onChanged();
         }
-        if (!other.getPassword().isEmpty()) {
-          password_ = other.password_;
+        if (!other.getEmail().isEmpty()) {
+          email_ = other.email_;
           onChanged();
+        }
+        if (other.getCreatedAt() != 0L) {
+          setCreatedAt(other.getCreatedAt());
+        }
+        if (other.getUpdatedAt() != 0L) {
+          setUpdatedAt(other.getUpdatedAt());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -519,140 +747,192 @@ public final class AuthenticationPb {
         return this;
       }
 
-      private java.lang.Object usernameEmail_ = "";
+      private java.lang.Object username_ = "";
       /**
-       * <code>string usernameEmail = 1;</code>
+       * <code>string username = 1;</code>
        */
-      public java.lang.String getUsernameEmail() {
-        java.lang.Object ref = usernameEmail_;
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          usernameEmail_ = s;
+          username_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string usernameEmail = 1;</code>
+       * <code>string username = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getUsernameEmailBytes() {
-        java.lang.Object ref = usernameEmail_;
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          usernameEmail_ = b;
+          username_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string usernameEmail = 1;</code>
+       * <code>string username = 1;</code>
        */
-      public Builder setUsernameEmail(
+      public Builder setUsername(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        usernameEmail_ = value;
+        username_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string usernameEmail = 1;</code>
+       * <code>string username = 1;</code>
        */
-      public Builder clearUsernameEmail() {
+      public Builder clearUsername() {
         
-        usernameEmail_ = getDefaultInstance().getUsernameEmail();
+        username_ = getDefaultInstance().getUsername();
         onChanged();
         return this;
       }
       /**
-       * <code>string usernameEmail = 1;</code>
+       * <code>string username = 1;</code>
        */
-      public Builder setUsernameEmailBytes(
+      public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        usernameEmail_ = value;
+        username_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object password_ = "";
+      private java.lang.Object email_ = "";
       /**
-       * <code>string password = 2;</code>
+       * <code>string email = 2;</code>
        */
-      public java.lang.String getPassword() {
-        java.lang.Object ref = password_;
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          password_ = s;
+          email_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string email = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getPasswordBytes() {
-        java.lang.Object ref = password_;
+          getEmailBytes() {
+        java.lang.Object ref = email_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          password_ = b;
+          email_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string email = 2;</code>
        */
-      public Builder setPassword(
+      public Builder setEmail(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        password_ = value;
+        email_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string email = 2;</code>
        */
-      public Builder clearPassword() {
+      public Builder clearEmail() {
         
-        password_ = getDefaultInstance().getPassword();
+        email_ = getDefaultInstance().getEmail();
         onChanged();
         return this;
       }
       /**
-       * <code>string password = 2;</code>
+       * <code>string email = 2;</code>
        */
-      public Builder setPasswordBytes(
+      public Builder setEmailBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        password_ = value;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long createdAt_ ;
+      /**
+       * <code>int64 createdAt = 3;</code>
+       */
+      public long getCreatedAt() {
+        return createdAt_;
+      }
+      /**
+       * <code>int64 createdAt = 3;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        
+        createdAt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 createdAt = 3;</code>
+       */
+      public Builder clearCreatedAt() {
+        
+        createdAt_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long updatedAt_ ;
+      /**
+       * <code>int64 updatedAt = 4;</code>
+       */
+      public long getUpdatedAt() {
+        return updatedAt_;
+      }
+      /**
+       * <code>int64 updatedAt = 4;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        
+        updatedAt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 updatedAt = 4;</code>
+       */
+      public Builder clearUpdatedAt() {
+        
+        updatedAt_ = 0L;
         onChanged();
         return this;
       }
@@ -2427,6 +2707,19 @@ public final class AuthenticationPb {
      */
     com.google.protobuf.ByteString
         getTokenBytes();
+
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    boolean hasPermission();
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    com.sdqube.entities.CommonsPb.Permission getPermission();
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionOrBuilder();
   }
   /**
    * Protobuf type {@code sdqube.entities.pb.GAuthorization}
@@ -2472,6 +2765,19 @@ public final class AuthenticationPb {
               java.lang.String s = input.readStringRequireUtf8();
 
               token_ = s;
+              break;
+            }
+            case 18: {
+              com.sdqube.entities.CommonsPb.Permission.Builder subBuilder = null;
+              if (permission_ != null) {
+                subBuilder = permission_.toBuilder();
+              }
+              permission_ = input.readMessage(com.sdqube.entities.CommonsPb.Permission.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(permission_);
+                permission_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -2540,6 +2846,27 @@ public final class AuthenticationPb {
       }
     }
 
+    public static final int PERMISSION_FIELD_NUMBER = 2;
+    private com.sdqube.entities.CommonsPb.Permission permission_;
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    public boolean hasPermission() {
+      return permission_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Permission getPermission() {
+      return permission_ == null ? com.sdqube.entities.CommonsPb.Permission.getDefaultInstance() : permission_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+     */
+    public com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionOrBuilder() {
+      return getPermission();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2557,6 +2884,9 @@ public final class AuthenticationPb {
       if (!getTokenBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, token_);
       }
+      if (permission_ != null) {
+        output.writeMessage(2, getPermission());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -2568,6 +2898,10 @@ public final class AuthenticationPb {
       size = 0;
       if (!getTokenBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, token_);
+      }
+      if (permission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getPermission());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2587,6 +2921,11 @@ public final class AuthenticationPb {
       boolean result = true;
       result = result && getToken()
           .equals(other.getToken());
+      result = result && (hasPermission() == other.hasPermission());
+      if (hasPermission()) {
+        result = result && getPermission()
+            .equals(other.getPermission());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2600,6 +2939,10 @@ public final class AuthenticationPb {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TOKEN_FIELD_NUMBER;
       hash = (53 * hash) + getToken().hashCode();
+      if (hasPermission()) {
+        hash = (37 * hash) + PERMISSION_FIELD_NUMBER;
+        hash = (53 * hash) + getPermission().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2735,6 +3078,12 @@ public final class AuthenticationPb {
         super.clear();
         token_ = "";
 
+        if (permissionBuilder_ == null) {
+          permission_ = null;
+        } else {
+          permission_ = null;
+          permissionBuilder_ = null;
+        }
         return this;
       }
 
@@ -2762,6 +3111,11 @@ public final class AuthenticationPb {
       public com.sdqube.entities.AuthenticationPb.GAuthorization buildPartial() {
         com.sdqube.entities.AuthenticationPb.GAuthorization result = new com.sdqube.entities.AuthenticationPb.GAuthorization(this);
         result.token_ = token_;
+        if (permissionBuilder_ == null) {
+          result.permission_ = permission_;
+        } else {
+          result.permission_ = permissionBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -2813,6 +3167,9 @@ public final class AuthenticationPb {
         if (!other.getToken().isEmpty()) {
           token_ = other.token_;
           onChanged();
+        }
+        if (other.hasPermission()) {
+          mergePermission(other.getPermission());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2911,6 +3268,123 @@ public final class AuthenticationPb {
         onChanged();
         return this;
       }
+
+      private com.sdqube.entities.CommonsPb.Permission permission_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder> permissionBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public boolean hasPermission() {
+        return permissionBuilder_ != null || permission_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission getPermission() {
+        if (permissionBuilder_ == null) {
+          return permission_ == null ? com.sdqube.entities.CommonsPb.Permission.getDefaultInstance() : permission_;
+        } else {
+          return permissionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public Builder setPermission(com.sdqube.entities.CommonsPb.Permission value) {
+        if (permissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          permission_ = value;
+          onChanged();
+        } else {
+          permissionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public Builder setPermission(
+          com.sdqube.entities.CommonsPb.Permission.Builder builderForValue) {
+        if (permissionBuilder_ == null) {
+          permission_ = builderForValue.build();
+          onChanged();
+        } else {
+          permissionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public Builder mergePermission(com.sdqube.entities.CommonsPb.Permission value) {
+        if (permissionBuilder_ == null) {
+          if (permission_ != null) {
+            permission_ =
+              com.sdqube.entities.CommonsPb.Permission.newBuilder(permission_).mergeFrom(value).buildPartial();
+          } else {
+            permission_ = value;
+          }
+          onChanged();
+        } else {
+          permissionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public Builder clearPermission() {
+        if (permissionBuilder_ == null) {
+          permission_ = null;
+          onChanged();
+        } else {
+          permission_ = null;
+          permissionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission.Builder getPermissionBuilder() {
+        
+        onChanged();
+        return getPermissionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      public com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionOrBuilder() {
+        if (permissionBuilder_ != null) {
+          return permissionBuilder_.getMessageOrBuilder();
+        } else {
+          return permission_ == null ?
+              com.sdqube.entities.CommonsPb.Permission.getDefaultInstance() : permission_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Permission permission = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder> 
+          getPermissionFieldBuilder() {
+        if (permissionBuilder_ == null) {
+          permissionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder>(
+                  getPermission(),
+                  getParentForChildren(),
+                  isClean());
+          permission_ = null;
+        }
+        return permissionBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2964,6 +3438,2800 @@ public final class AuthenticationPb {
 
   }
 
+  public interface RoleOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.Role)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string roleId = 1;</code>
+     */
+    java.lang.String getRoleId();
+    /**
+     * <code>string roleId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getRoleIdBytes();
+
+    /**
+     * <pre>
+     *Its just description
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <pre>
+     *Its just description
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+     */
+    int getRoleTypeValue();
+    /**
+     * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.RoleType getRoleType();
+
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    java.util.List<com.sdqube.entities.CommonsPb.Permission> 
+        getPermissionsList();
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    com.sdqube.entities.CommonsPb.Permission getPermissions(int index);
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    int getPermissionsCount();
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    java.util.List<? extends com.sdqube.entities.CommonsPb.PermissionOrBuilder> 
+        getPermissionsOrBuilderList();
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionsOrBuilder(
+        int index);
+
+    /**
+     * <code>int64 createdAt = 14;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>int64 updatedAt = 15;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code sdqube.entities.pb.Role}
+   */
+  public  static final class Role extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:sdqube.entities.pb.Role)
+      RoleOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Role.newBuilder() to construct.
+    private Role(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Role() {
+      roleId_ = "";
+      name_ = "";
+      roleType_ = 0;
+      permissions_ = java.util.Collections.emptyList();
+      createdAt_ = 0L;
+      updatedAt_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Role(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              roleId_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+
+              roleType_ = rawValue;
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                permissions_ = new java.util.ArrayList<com.sdqube.entities.CommonsPb.Permission>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              permissions_.add(
+                  input.readMessage(com.sdqube.entities.CommonsPb.Permission.parser(), extensionRegistry));
+              break;
+            }
+            case 112: {
+
+              createdAt_ = input.readInt64();
+              break;
+            }
+            case 120: {
+
+              updatedAt_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          permissions_ = java.util.Collections.unmodifiableList(permissions_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Role_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Role_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.sdqube.entities.AuthenticationPb.Role.class, com.sdqube.entities.AuthenticationPb.Role.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ROLEID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object roleId_;
+    /**
+     * <code>string roleId = 1;</code>
+     */
+    public java.lang.String getRoleId() {
+      java.lang.Object ref = roleId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        roleId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string roleId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRoleIdBytes() {
+      java.lang.Object ref = roleId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        roleId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
+    /**
+     * <pre>
+     *Its just description
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *Its just description
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ROLETYPE_FIELD_NUMBER = 3;
+    private int roleType_;
+    /**
+     * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+     */
+    public int getRoleTypeValue() {
+      return roleType_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.RoleType getRoleType() {
+      @SuppressWarnings("deprecation")
+      com.sdqube.entities.AuthenticationPb.RoleType result = com.sdqube.entities.AuthenticationPb.RoleType.valueOf(roleType_);
+      return result == null ? com.sdqube.entities.AuthenticationPb.RoleType.UNRECOGNIZED : result;
+    }
+
+    public static final int PERMISSIONS_FIELD_NUMBER = 4;
+    private java.util.List<com.sdqube.entities.CommonsPb.Permission> permissions_;
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    public java.util.List<com.sdqube.entities.CommonsPb.Permission> getPermissionsList() {
+      return permissions_;
+    }
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    public java.util.List<? extends com.sdqube.entities.CommonsPb.PermissionOrBuilder> 
+        getPermissionsOrBuilderList() {
+      return permissions_;
+    }
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    public int getPermissionsCount() {
+      return permissions_.size();
+    }
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Permission getPermissions(int index) {
+      return permissions_.get(index);
+    }
+    /**
+     * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+     */
+    public com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionsOrBuilder(
+        int index) {
+      return permissions_.get(index);
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 14;
+    private long createdAt_;
+    /**
+     * <code>int64 createdAt = 14;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 15;
+    private long updatedAt_;
+    /**
+     * <code>int64 updatedAt = 15;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getRoleIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, roleId_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (roleType_ != com.sdqube.entities.AuthenticationPb.RoleType.UNKNOWN_ROLE.getNumber()) {
+        output.writeEnum(3, roleType_);
+      }
+      for (int i = 0; i < permissions_.size(); i++) {
+        output.writeMessage(4, permissions_.get(i));
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(14, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(15, updatedAt_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getRoleIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, roleId_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (roleType_ != com.sdqube.entities.AuthenticationPb.RoleType.UNKNOWN_ROLE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, roleType_);
+      }
+      for (int i = 0; i < permissions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, permissions_.get(i));
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(14, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, updatedAt_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.sdqube.entities.AuthenticationPb.Role)) {
+        return super.equals(obj);
+      }
+      com.sdqube.entities.AuthenticationPb.Role other = (com.sdqube.entities.AuthenticationPb.Role) obj;
+
+      boolean result = true;
+      result = result && getRoleId()
+          .equals(other.getRoleId());
+      result = result && getName()
+          .equals(other.getName());
+      result = result && roleType_ == other.roleType_;
+      result = result && getPermissionsList()
+          .equals(other.getPermissionsList());
+      result = result && (getCreatedAt()
+          == other.getCreatedAt());
+      result = result && (getUpdatedAt()
+          == other.getUpdatedAt());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROLEID_FIELD_NUMBER;
+      hash = (53 * hash) + getRoleId().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ROLETYPE_FIELD_NUMBER;
+      hash = (53 * hash) + roleType_;
+      if (getPermissionsCount() > 0) {
+        hash = (37 * hash) + PERMISSIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getPermissionsList().hashCode();
+      }
+      hash = (37 * hash) + CREATEDAT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getCreatedAt());
+      hash = (37 * hash) + UPDATEDAT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUpdatedAt());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Role parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.sdqube.entities.AuthenticationPb.Role prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code sdqube.entities.pb.Role}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:sdqube.entities.pb.Role)
+        com.sdqube.entities.AuthenticationPb.RoleOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Role_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Role_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.sdqube.entities.AuthenticationPb.Role.class, com.sdqube.entities.AuthenticationPb.Role.Builder.class);
+      }
+
+      // Construct using com.sdqube.entities.AuthenticationPb.Role.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getPermissionsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        roleId_ = "";
+
+        name_ = "";
+
+        roleType_ = 0;
+
+        if (permissionsBuilder_ == null) {
+          permissions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          permissionsBuilder_.clear();
+        }
+        createdAt_ = 0L;
+
+        updatedAt_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Role_descriptor;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Role getDefaultInstanceForType() {
+        return com.sdqube.entities.AuthenticationPb.Role.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Role build() {
+        com.sdqube.entities.AuthenticationPb.Role result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Role buildPartial() {
+        com.sdqube.entities.AuthenticationPb.Role result = new com.sdqube.entities.AuthenticationPb.Role(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.roleId_ = roleId_;
+        result.name_ = name_;
+        result.roleType_ = roleType_;
+        if (permissionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            permissions_ = java.util.Collections.unmodifiableList(permissions_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.permissions_ = permissions_;
+        } else {
+          result.permissions_ = permissionsBuilder_.build();
+        }
+        result.createdAt_ = createdAt_;
+        result.updatedAt_ = updatedAt_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.sdqube.entities.AuthenticationPb.Role) {
+          return mergeFrom((com.sdqube.entities.AuthenticationPb.Role)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.sdqube.entities.AuthenticationPb.Role other) {
+        if (other == com.sdqube.entities.AuthenticationPb.Role.getDefaultInstance()) return this;
+        if (!other.getRoleId().isEmpty()) {
+          roleId_ = other.roleId_;
+          onChanged();
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.roleType_ != 0) {
+          setRoleTypeValue(other.getRoleTypeValue());
+        }
+        if (permissionsBuilder_ == null) {
+          if (!other.permissions_.isEmpty()) {
+            if (permissions_.isEmpty()) {
+              permissions_ = other.permissions_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensurePermissionsIsMutable();
+              permissions_.addAll(other.permissions_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.permissions_.isEmpty()) {
+            if (permissionsBuilder_.isEmpty()) {
+              permissionsBuilder_.dispose();
+              permissionsBuilder_ = null;
+              permissions_ = other.permissions_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              permissionsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPermissionsFieldBuilder() : null;
+            } else {
+              permissionsBuilder_.addAllMessages(other.permissions_);
+            }
+          }
+        }
+        if (other.getCreatedAt() != 0L) {
+          setCreatedAt(other.getCreatedAt());
+        }
+        if (other.getUpdatedAt() != 0L) {
+          setUpdatedAt(other.getUpdatedAt());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.sdqube.entities.AuthenticationPb.Role parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.sdqube.entities.AuthenticationPb.Role) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object roleId_ = "";
+      /**
+       * <code>string roleId = 1;</code>
+       */
+      public java.lang.String getRoleId() {
+        java.lang.Object ref = roleId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          roleId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string roleId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRoleIdBytes() {
+        java.lang.Object ref = roleId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          roleId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string roleId = 1;</code>
+       */
+      public Builder setRoleId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        roleId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string roleId = 1;</code>
+       */
+      public Builder clearRoleId() {
+        
+        roleId_ = getDefaultInstance().getRoleId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string roleId = 1;</code>
+       */
+      public Builder setRoleIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        roleId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <pre>
+       *Its just description
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *Its just description
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *Its just description
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *Its just description
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *Its just description
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int roleType_ = 0;
+      /**
+       * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+       */
+      public int getRoleTypeValue() {
+        return roleType_;
+      }
+      /**
+       * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+       */
+      public Builder setRoleTypeValue(int value) {
+        roleType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.RoleType getRoleType() {
+        @SuppressWarnings("deprecation")
+        com.sdqube.entities.AuthenticationPb.RoleType result = com.sdqube.entities.AuthenticationPb.RoleType.valueOf(roleType_);
+        return result == null ? com.sdqube.entities.AuthenticationPb.RoleType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+       */
+      public Builder setRoleType(com.sdqube.entities.AuthenticationPb.RoleType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        roleType_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.RoleType roleType = 3;</code>
+       */
+      public Builder clearRoleType() {
+        
+        roleType_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.sdqube.entities.CommonsPb.Permission> permissions_ =
+        java.util.Collections.emptyList();
+      private void ensurePermissionsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          permissions_ = new java.util.ArrayList<com.sdqube.entities.CommonsPb.Permission>(permissions_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder> permissionsBuilder_;
+
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public java.util.List<com.sdqube.entities.CommonsPb.Permission> getPermissionsList() {
+        if (permissionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(permissions_);
+        } else {
+          return permissionsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public int getPermissionsCount() {
+        if (permissionsBuilder_ == null) {
+          return permissions_.size();
+        } else {
+          return permissionsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission getPermissions(int index) {
+        if (permissionsBuilder_ == null) {
+          return permissions_.get(index);
+        } else {
+          return permissionsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder setPermissions(
+          int index, com.sdqube.entities.CommonsPb.Permission value) {
+        if (permissionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePermissionsIsMutable();
+          permissions_.set(index, value);
+          onChanged();
+        } else {
+          permissionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder setPermissions(
+          int index, com.sdqube.entities.CommonsPb.Permission.Builder builderForValue) {
+        if (permissionsBuilder_ == null) {
+          ensurePermissionsIsMutable();
+          permissions_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          permissionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder addPermissions(com.sdqube.entities.CommonsPb.Permission value) {
+        if (permissionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePermissionsIsMutable();
+          permissions_.add(value);
+          onChanged();
+        } else {
+          permissionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder addPermissions(
+          int index, com.sdqube.entities.CommonsPb.Permission value) {
+        if (permissionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePermissionsIsMutable();
+          permissions_.add(index, value);
+          onChanged();
+        } else {
+          permissionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder addPermissions(
+          com.sdqube.entities.CommonsPb.Permission.Builder builderForValue) {
+        if (permissionsBuilder_ == null) {
+          ensurePermissionsIsMutable();
+          permissions_.add(builderForValue.build());
+          onChanged();
+        } else {
+          permissionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder addPermissions(
+          int index, com.sdqube.entities.CommonsPb.Permission.Builder builderForValue) {
+        if (permissionsBuilder_ == null) {
+          ensurePermissionsIsMutable();
+          permissions_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          permissionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder addAllPermissions(
+          java.lang.Iterable<? extends com.sdqube.entities.CommonsPb.Permission> values) {
+        if (permissionsBuilder_ == null) {
+          ensurePermissionsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, permissions_);
+          onChanged();
+        } else {
+          permissionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder clearPermissions() {
+        if (permissionsBuilder_ == null) {
+          permissions_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          permissionsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public Builder removePermissions(int index) {
+        if (permissionsBuilder_ == null) {
+          ensurePermissionsIsMutable();
+          permissions_.remove(index);
+          onChanged();
+        } else {
+          permissionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission.Builder getPermissionsBuilder(
+          int index) {
+        return getPermissionsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public com.sdqube.entities.CommonsPb.PermissionOrBuilder getPermissionsOrBuilder(
+          int index) {
+        if (permissionsBuilder_ == null) {
+          return permissions_.get(index);  } else {
+          return permissionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public java.util.List<? extends com.sdqube.entities.CommonsPb.PermissionOrBuilder> 
+           getPermissionsOrBuilderList() {
+        if (permissionsBuilder_ != null) {
+          return permissionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(permissions_);
+        }
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission.Builder addPermissionsBuilder() {
+        return getPermissionsFieldBuilder().addBuilder(
+            com.sdqube.entities.CommonsPb.Permission.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Permission.Builder addPermissionsBuilder(
+          int index) {
+        return getPermissionsFieldBuilder().addBuilder(
+            index, com.sdqube.entities.CommonsPb.Permission.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .sdqube.entities.pb.Permission permissions = 4;</code>
+       */
+      public java.util.List<com.sdqube.entities.CommonsPb.Permission.Builder> 
+           getPermissionsBuilderList() {
+        return getPermissionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder> 
+          getPermissionsFieldBuilder() {
+        if (permissionsBuilder_ == null) {
+          permissionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Permission, com.sdqube.entities.CommonsPb.Permission.Builder, com.sdqube.entities.CommonsPb.PermissionOrBuilder>(
+                  permissions_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          permissions_ = null;
+        }
+        return permissionsBuilder_;
+      }
+
+      private long createdAt_ ;
+      /**
+       * <code>int64 createdAt = 14;</code>
+       */
+      public long getCreatedAt() {
+        return createdAt_;
+      }
+      /**
+       * <code>int64 createdAt = 14;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        
+        createdAt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 createdAt = 14;</code>
+       */
+      public Builder clearCreatedAt() {
+        
+        createdAt_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long updatedAt_ ;
+      /**
+       * <code>int64 updatedAt = 15;</code>
+       */
+      public long getUpdatedAt() {
+        return updatedAt_;
+      }
+      /**
+       * <code>int64 updatedAt = 15;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        
+        updatedAt_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 updatedAt = 15;</code>
+       */
+      public Builder clearUpdatedAt() {
+        
+        updatedAt_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:sdqube.entities.pb.Role)
+    }
+
+    // @@protoc_insertion_point(class_scope:sdqube.entities.pb.Role)
+    private static final com.sdqube.entities.AuthenticationPb.Role DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.sdqube.entities.AuthenticationPb.Role();
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.Role getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Role>
+        PARSER = new com.google.protobuf.AbstractParser<Role>() {
+      @java.lang.Override
+      public Role parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Role(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Role> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Role> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.sdqube.entities.AuthenticationPb.Role getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SessionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.Session)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string sessionId = 1;</code>
+     */
+    java.lang.String getSessionId();
+    /**
+     * <code>string sessionId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getSessionIdBytes();
+
+    /**
+     * <code>string userId = 3;</code>
+     */
+    java.lang.String getUserId();
+    /**
+     * <code>string userId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserIdBytes();
+
+    /**
+     * <code>string ip = 7;</code>
+     */
+    java.lang.String getIp();
+    /**
+     * <code>string ip = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getIpBytes();
+
+    /**
+     * <code>bool active = 9;</code>
+     */
+    boolean getActive();
+
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    boolean hasUser();
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.User getUser();
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.UserOrBuilder getUserOrBuilder();
+
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    boolean hasRole();
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.Role getRole();
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.RoleOrBuilder getRoleOrBuilder();
+
+    /**
+     * <code>string buildVersion = 19;</code>
+     */
+    java.lang.String getBuildVersion();
+    /**
+     * <code>string buildVersion = 19;</code>
+     */
+    com.google.protobuf.ByteString
+        getBuildVersionBytes();
+
+    /**
+     * <code>int64 timestamp = 8;</code>
+     */
+    long getTimestamp();
+  }
+  /**
+   * Protobuf type {@code sdqube.entities.pb.Session}
+   */
+  public  static final class Session extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:sdqube.entities.pb.Session)
+      SessionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Session.newBuilder() to construct.
+    private Session(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Session() {
+      sessionId_ = "";
+      userId_ = "";
+      ip_ = "";
+      active_ = false;
+      buildVersion_ = "";
+      timestamp_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Session(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              sessionId_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userId_ = s;
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ip_ = s;
+              break;
+            }
+            case 64: {
+
+              timestamp_ = input.readInt64();
+              break;
+            }
+            case 72: {
+
+              active_ = input.readBool();
+              break;
+            }
+            case 82: {
+              com.sdqube.entities.AuthenticationPb.User.Builder subBuilder = null;
+              if (user_ != null) {
+                subBuilder = user_.toBuilder();
+              }
+              user_ = input.readMessage(com.sdqube.entities.AuthenticationPb.User.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(user_);
+                user_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 114: {
+              com.sdqube.entities.AuthenticationPb.Role.Builder subBuilder = null;
+              if (role_ != null) {
+                subBuilder = role_.toBuilder();
+              }
+              role_ = input.readMessage(com.sdqube.entities.AuthenticationPb.Role.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(role_);
+                role_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 154: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              buildVersion_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Session_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Session_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.sdqube.entities.AuthenticationPb.Session.class, com.sdqube.entities.AuthenticationPb.Session.Builder.class);
+    }
+
+    public static final int SESSIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object sessionId_;
+    /**
+     * <code>string sessionId = 1;</code>
+     */
+    public java.lang.String getSessionId() {
+      java.lang.Object ref = sessionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string sessionId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionIdBytes() {
+      java.lang.Object ref = sessionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int USERID_FIELD_NUMBER = 3;
+    private volatile java.lang.Object userId_;
+    /**
+     * <code>string userId = 3;</code>
+     */
+    public java.lang.String getUserId() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        userId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string userId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserIdBytes() {
+      java.lang.Object ref = userId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        userId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int IP_FIELD_NUMBER = 7;
+    private volatile java.lang.Object ip_;
+    /**
+     * <code>string ip = 7;</code>
+     */
+    public java.lang.String getIp() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ip_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ip = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIpBytes() {
+      java.lang.Object ref = ip_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ip_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ACTIVE_FIELD_NUMBER = 9;
+    private boolean active_;
+    /**
+     * <code>bool active = 9;</code>
+     */
+    public boolean getActive() {
+      return active_;
+    }
+
+    public static final int USER_FIELD_NUMBER = 10;
+    private com.sdqube.entities.AuthenticationPb.User user_;
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    public boolean hasUser() {
+      return user_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.User getUser() {
+      return user_ == null ? com.sdqube.entities.AuthenticationPb.User.getDefaultInstance() : user_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.User user = 10;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.UserOrBuilder getUserOrBuilder() {
+      return getUser();
+    }
+
+    public static final int ROLE_FIELD_NUMBER = 14;
+    private com.sdqube.entities.AuthenticationPb.Role role_;
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    public boolean hasRole() {
+      return role_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.Role getRole() {
+      return role_ == null ? com.sdqube.entities.AuthenticationPb.Role.getDefaultInstance() : role_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Role role = 14;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.RoleOrBuilder getRoleOrBuilder() {
+      return getRole();
+    }
+
+    public static final int BUILDVERSION_FIELD_NUMBER = 19;
+    private volatile java.lang.Object buildVersion_;
+    /**
+     * <code>string buildVersion = 19;</code>
+     */
+    public java.lang.String getBuildVersion() {
+      java.lang.Object ref = buildVersion_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        buildVersion_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string buildVersion = 19;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBuildVersionBytes() {
+      java.lang.Object ref = buildVersion_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        buildVersion_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 8;
+    private long timestamp_;
+    /**
+     * <code>int64 timestamp = 8;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getSessionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sessionId_);
+      }
+      if (!getUserIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, userId_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, ip_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(8, timestamp_);
+      }
+      if (active_ != false) {
+        output.writeBool(9, active_);
+      }
+      if (user_ != null) {
+        output.writeMessage(10, getUser());
+      }
+      if (role_ != null) {
+        output.writeMessage(14, getRole());
+      }
+      if (!getBuildVersionBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 19, buildVersion_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getSessionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sessionId_);
+      }
+      if (!getUserIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, userId_);
+      }
+      if (!getIpBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, ip_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, timestamp_);
+      }
+      if (active_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(9, active_);
+      }
+      if (user_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getUser());
+      }
+      if (role_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getRole());
+      }
+      if (!getBuildVersionBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(19, buildVersion_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.sdqube.entities.AuthenticationPb.Session)) {
+        return super.equals(obj);
+      }
+      com.sdqube.entities.AuthenticationPb.Session other = (com.sdqube.entities.AuthenticationPb.Session) obj;
+
+      boolean result = true;
+      result = result && getSessionId()
+          .equals(other.getSessionId());
+      result = result && getUserId()
+          .equals(other.getUserId());
+      result = result && getIp()
+          .equals(other.getIp());
+      result = result && (getActive()
+          == other.getActive());
+      result = result && (hasUser() == other.hasUser());
+      if (hasUser()) {
+        result = result && getUser()
+            .equals(other.getUser());
+      }
+      result = result && (hasRole() == other.hasRole());
+      if (hasRole()) {
+        result = result && getRole()
+            .equals(other.getRole());
+      }
+      result = result && getBuildVersion()
+          .equals(other.getBuildVersion());
+      result = result && (getTimestamp()
+          == other.getTimestamp());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SESSIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionId().hashCode();
+      hash = (37 * hash) + USERID_FIELD_NUMBER;
+      hash = (53 * hash) + getUserId().hashCode();
+      hash = (37 * hash) + IP_FIELD_NUMBER;
+      hash = (53 * hash) + getIp().hashCode();
+      hash = (37 * hash) + ACTIVE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getActive());
+      if (hasUser()) {
+        hash = (37 * hash) + USER_FIELD_NUMBER;
+        hash = (53 * hash) + getUser().hashCode();
+      }
+      if (hasRole()) {
+        hash = (37 * hash) + ROLE_FIELD_NUMBER;
+        hash = (53 * hash) + getRole().hashCode();
+      }
+      hash = (37 * hash) + BUILDVERSION_FIELD_NUMBER;
+      hash = (53 * hash) + getBuildVersion().hashCode();
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimestamp());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.Session parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.sdqube.entities.AuthenticationPb.Session prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code sdqube.entities.pb.Session}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:sdqube.entities.pb.Session)
+        com.sdqube.entities.AuthenticationPb.SessionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Session_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Session_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.sdqube.entities.AuthenticationPb.Session.class, com.sdqube.entities.AuthenticationPb.Session.Builder.class);
+      }
+
+      // Construct using com.sdqube.entities.AuthenticationPb.Session.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        sessionId_ = "";
+
+        userId_ = "";
+
+        ip_ = "";
+
+        active_ = false;
+
+        if (userBuilder_ == null) {
+          user_ = null;
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+        if (roleBuilder_ == null) {
+          role_ = null;
+        } else {
+          role_ = null;
+          roleBuilder_ = null;
+        }
+        buildVersion_ = "";
+
+        timestamp_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_Session_descriptor;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Session getDefaultInstanceForType() {
+        return com.sdqube.entities.AuthenticationPb.Session.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Session build() {
+        com.sdqube.entities.AuthenticationPb.Session result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.Session buildPartial() {
+        com.sdqube.entities.AuthenticationPb.Session result = new com.sdqube.entities.AuthenticationPb.Session(this);
+        result.sessionId_ = sessionId_;
+        result.userId_ = userId_;
+        result.ip_ = ip_;
+        result.active_ = active_;
+        if (userBuilder_ == null) {
+          result.user_ = user_;
+        } else {
+          result.user_ = userBuilder_.build();
+        }
+        if (roleBuilder_ == null) {
+          result.role_ = role_;
+        } else {
+          result.role_ = roleBuilder_.build();
+        }
+        result.buildVersion_ = buildVersion_;
+        result.timestamp_ = timestamp_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.sdqube.entities.AuthenticationPb.Session) {
+          return mergeFrom((com.sdqube.entities.AuthenticationPb.Session)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.sdqube.entities.AuthenticationPb.Session other) {
+        if (other == com.sdqube.entities.AuthenticationPb.Session.getDefaultInstance()) return this;
+        if (!other.getSessionId().isEmpty()) {
+          sessionId_ = other.sessionId_;
+          onChanged();
+        }
+        if (!other.getUserId().isEmpty()) {
+          userId_ = other.userId_;
+          onChanged();
+        }
+        if (!other.getIp().isEmpty()) {
+          ip_ = other.ip_;
+          onChanged();
+        }
+        if (other.getActive() != false) {
+          setActive(other.getActive());
+        }
+        if (other.hasUser()) {
+          mergeUser(other.getUser());
+        }
+        if (other.hasRole()) {
+          mergeRole(other.getRole());
+        }
+        if (!other.getBuildVersion().isEmpty()) {
+          buildVersion_ = other.buildVersion_;
+          onChanged();
+        }
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.sdqube.entities.AuthenticationPb.Session parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.sdqube.entities.AuthenticationPb.Session) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object sessionId_ = "";
+      /**
+       * <code>string sessionId = 1;</code>
+       */
+      public java.lang.String getSessionId() {
+        java.lang.Object ref = sessionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string sessionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSessionIdBytes() {
+        java.lang.Object ref = sessionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string sessionId = 1;</code>
+       */
+      public Builder setSessionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sessionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string sessionId = 1;</code>
+       */
+      public Builder clearSessionId() {
+        
+        sessionId_ = getDefaultInstance().getSessionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string sessionId = 1;</code>
+       */
+      public Builder setSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        sessionId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object userId_ = "";
+      /**
+       * <code>string userId = 3;</code>
+       */
+      public java.lang.String getUserId() {
+        java.lang.Object ref = userId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          userId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string userId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserIdBytes() {
+        java.lang.Object ref = userId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          userId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string userId = 3;</code>
+       */
+      public Builder setUserId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string userId = 3;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = getDefaultInstance().getUserId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string userId = 3;</code>
+       */
+      public Builder setUserIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ip_ = "";
+      /**
+       * <code>string ip = 7;</code>
+       */
+      public java.lang.String getIp() {
+        java.lang.Object ref = ip_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ip_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ip = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIpBytes() {
+        java.lang.Object ref = ip_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ip_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ip = 7;</code>
+       */
+      public Builder setIp(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip = 7;</code>
+       */
+      public Builder clearIp() {
+        
+        ip_ = getDefaultInstance().getIp();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ip = 7;</code>
+       */
+      public Builder setIpBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ip_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean active_ ;
+      /**
+       * <code>bool active = 9;</code>
+       */
+      public boolean getActive() {
+        return active_;
+      }
+      /**
+       * <code>bool active = 9;</code>
+       */
+      public Builder setActive(boolean value) {
+        
+        active_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool active = 9;</code>
+       */
+      public Builder clearActive() {
+        
+        active_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.sdqube.entities.AuthenticationPb.User user_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.User, com.sdqube.entities.AuthenticationPb.User.Builder, com.sdqube.entities.AuthenticationPb.UserOrBuilder> userBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public boolean hasUser() {
+        return userBuilder_ != null || user_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.User getUser() {
+        if (userBuilder_ == null) {
+          return user_ == null ? com.sdqube.entities.AuthenticationPb.User.getDefaultInstance() : user_;
+        } else {
+          return userBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public Builder setUser(com.sdqube.entities.AuthenticationPb.User value) {
+        if (userBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          user_ = value;
+          onChanged();
+        } else {
+          userBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public Builder setUser(
+          com.sdqube.entities.AuthenticationPb.User.Builder builderForValue) {
+        if (userBuilder_ == null) {
+          user_ = builderForValue.build();
+          onChanged();
+        } else {
+          userBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public Builder mergeUser(com.sdqube.entities.AuthenticationPb.User value) {
+        if (userBuilder_ == null) {
+          if (user_ != null) {
+            user_ =
+              com.sdqube.entities.AuthenticationPb.User.newBuilder(user_).mergeFrom(value).buildPartial();
+          } else {
+            user_ = value;
+          }
+          onChanged();
+        } else {
+          userBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public Builder clearUser() {
+        if (userBuilder_ == null) {
+          user_ = null;
+          onChanged();
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.User.Builder getUserBuilder() {
+        
+        onChanged();
+        return getUserFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.UserOrBuilder getUserOrBuilder() {
+        if (userBuilder_ != null) {
+          return userBuilder_.getMessageOrBuilder();
+        } else {
+          return user_ == null ?
+              com.sdqube.entities.AuthenticationPb.User.getDefaultInstance() : user_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.User user = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.User, com.sdqube.entities.AuthenticationPb.User.Builder, com.sdqube.entities.AuthenticationPb.UserOrBuilder> 
+          getUserFieldBuilder() {
+        if (userBuilder_ == null) {
+          userBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.AuthenticationPb.User, com.sdqube.entities.AuthenticationPb.User.Builder, com.sdqube.entities.AuthenticationPb.UserOrBuilder>(
+                  getUser(),
+                  getParentForChildren(),
+                  isClean());
+          user_ = null;
+        }
+        return userBuilder_;
+      }
+
+      private com.sdqube.entities.AuthenticationPb.Role role_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.Role, com.sdqube.entities.AuthenticationPb.Role.Builder, com.sdqube.entities.AuthenticationPb.RoleOrBuilder> roleBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public boolean hasRole() {
+        return roleBuilder_ != null || role_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.Role getRole() {
+        if (roleBuilder_ == null) {
+          return role_ == null ? com.sdqube.entities.AuthenticationPb.Role.getDefaultInstance() : role_;
+        } else {
+          return roleBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public Builder setRole(com.sdqube.entities.AuthenticationPb.Role value) {
+        if (roleBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          role_ = value;
+          onChanged();
+        } else {
+          roleBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public Builder setRole(
+          com.sdqube.entities.AuthenticationPb.Role.Builder builderForValue) {
+        if (roleBuilder_ == null) {
+          role_ = builderForValue.build();
+          onChanged();
+        } else {
+          roleBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public Builder mergeRole(com.sdqube.entities.AuthenticationPb.Role value) {
+        if (roleBuilder_ == null) {
+          if (role_ != null) {
+            role_ =
+              com.sdqube.entities.AuthenticationPb.Role.newBuilder(role_).mergeFrom(value).buildPartial();
+          } else {
+            role_ = value;
+          }
+          onChanged();
+        } else {
+          roleBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public Builder clearRole() {
+        if (roleBuilder_ == null) {
+          role_ = null;
+          onChanged();
+        } else {
+          role_ = null;
+          roleBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.Role.Builder getRoleBuilder() {
+        
+        onChanged();
+        return getRoleFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.RoleOrBuilder getRoleOrBuilder() {
+        if (roleBuilder_ != null) {
+          return roleBuilder_.getMessageOrBuilder();
+        } else {
+          return role_ == null ?
+              com.sdqube.entities.AuthenticationPb.Role.getDefaultInstance() : role_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Role role = 14;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.Role, com.sdqube.entities.AuthenticationPb.Role.Builder, com.sdqube.entities.AuthenticationPb.RoleOrBuilder> 
+          getRoleFieldBuilder() {
+        if (roleBuilder_ == null) {
+          roleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.AuthenticationPb.Role, com.sdqube.entities.AuthenticationPb.Role.Builder, com.sdqube.entities.AuthenticationPb.RoleOrBuilder>(
+                  getRole(),
+                  getParentForChildren(),
+                  isClean());
+          role_ = null;
+        }
+        return roleBuilder_;
+      }
+
+      private java.lang.Object buildVersion_ = "";
+      /**
+       * <code>string buildVersion = 19;</code>
+       */
+      public java.lang.String getBuildVersion() {
+        java.lang.Object ref = buildVersion_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          buildVersion_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string buildVersion = 19;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBuildVersionBytes() {
+        java.lang.Object ref = buildVersion_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          buildVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string buildVersion = 19;</code>
+       */
+      public Builder setBuildVersion(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        buildVersion_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string buildVersion = 19;</code>
+       */
+      public Builder clearBuildVersion() {
+        
+        buildVersion_ = getDefaultInstance().getBuildVersion();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string buildVersion = 19;</code>
+       */
+      public Builder setBuildVersionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        buildVersion_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long timestamp_ ;
+      /**
+       * <code>int64 timestamp = 8;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <code>int64 timestamp = 8;</code>
+       */
+      public Builder setTimestamp(long value) {
+        
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 timestamp = 8;</code>
+       */
+      public Builder clearTimestamp() {
+        
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:sdqube.entities.pb.Session)
+    }
+
+    // @@protoc_insertion_point(class_scope:sdqube.entities.pb.Session)
+    private static final com.sdqube.entities.AuthenticationPb.Session DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.sdqube.entities.AuthenticationPb.Session();
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.Session getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Session>
+        PARSER = new com.google.protobuf.AbstractParser<Session>() {
+      @java.lang.Override
+      public Session parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Session(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Session> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Session> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.sdqube.entities.AuthenticationPb.Session getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface LoginRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.LoginRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -3000,6 +6268,19 @@ public final class AuthenticationPb {
      * <code>.sdqube.entities.pb.Location location = 11;</code>
      */
     com.sdqube.entities.AuthenticationPb.LocationOrBuilder getLocationOrBuilder();
+
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    boolean hasDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.Debug getDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder();
   }
   /**
    * Protobuf type {@code sdqube.entities.pb.LoginRequest}
@@ -3063,6 +6344,19 @@ public final class AuthenticationPb {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(location_);
                 location_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              com.sdqube.entities.CommonsPb.Debug.Builder subBuilder = null;
+              if (debug_ != null) {
+                subBuilder = debug_.toBuilder();
+              }
+              debug_ = input.readMessage(com.sdqube.entities.CommonsPb.Debug.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(debug_);
+                debug_ = subBuilder.buildPartial();
               }
 
               break;
@@ -3188,6 +6482,27 @@ public final class AuthenticationPb {
       return getLocation();
     }
 
+    public static final int DEBUG_FIELD_NUMBER = 12;
+    private com.sdqube.entities.CommonsPb.Debug debug_;
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public boolean hasDebug() {
+      return debug_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Debug getDebug() {
+      return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+      return getDebug();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3211,6 +6526,9 @@ public final class AuthenticationPb {
       if (location_ != null) {
         output.writeMessage(11, getLocation());
       }
+      if (debug_ != null) {
+        output.writeMessage(12, getDebug());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -3229,6 +6547,10 @@ public final class AuthenticationPb {
       if (location_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getLocation());
+      }
+      if (debug_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDebug());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3255,6 +6577,11 @@ public final class AuthenticationPb {
         result = result && getLocation()
             .equals(other.getLocation());
       }
+      result = result && (hasDebug() == other.hasDebug());
+      if (hasDebug()) {
+        result = result && getDebug()
+            .equals(other.getDebug());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -3273,6 +6600,10 @@ public final class AuthenticationPb {
       if (hasLocation()) {
         hash = (37 * hash) + LOCATION_FIELD_NUMBER;
         hash = (53 * hash) + getLocation().hashCode();
+      }
+      if (hasDebug()) {
+        hash = (37 * hash) + DEBUG_FIELD_NUMBER;
+        hash = (53 * hash) + getDebug().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -3417,6 +6748,12 @@ public final class AuthenticationPb {
           location_ = null;
           locationBuilder_ = null;
         }
+        if (debugBuilder_ == null) {
+          debug_ = null;
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
         return this;
       }
 
@@ -3449,6 +6786,11 @@ public final class AuthenticationPb {
           result.location_ = location_;
         } else {
           result.location_ = locationBuilder_.build();
+        }
+        if (debugBuilder_ == null) {
+          result.debug_ = debug_;
+        } else {
+          result.debug_ = debugBuilder_.build();
         }
         onBuilt();
         return result;
@@ -3508,6 +6850,9 @@ public final class AuthenticationPb {
         }
         if (other.hasLocation()) {
           mergeLocation(other.getLocation());
+        }
+        if (other.hasDebug()) {
+          mergeDebug(other.getDebug());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3792,6 +7137,123 @@ public final class AuthenticationPb {
         }
         return locationBuilder_;
       }
+
+      private com.sdqube.entities.CommonsPb.Debug debug_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> debugBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public boolean hasDebug() {
+        return debugBuilder_ != null || debug_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug getDebug() {
+        if (debugBuilder_ == null) {
+          return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        } else {
+          return debugBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          debug_ = value;
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(
+          com.sdqube.entities.CommonsPb.Debug.Builder builderForValue) {
+        if (debugBuilder_ == null) {
+          debug_ = builderForValue.build();
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder mergeDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (debug_ != null) {
+            debug_ =
+              com.sdqube.entities.CommonsPb.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          } else {
+            debug_ = value;
+          }
+          onChanged();
+        } else {
+          debugBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder clearDebug() {
+        if (debugBuilder_ == null) {
+          debug_ = null;
+          onChanged();
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug.Builder getDebugBuilder() {
+        
+        onChanged();
+        return getDebugFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+        if (debugBuilder_ != null) {
+          return debugBuilder_.getMessageOrBuilder();
+        } else {
+          return debug_ == null ?
+              com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> 
+          getDebugFieldBuilder() {
+        if (debugBuilder_ == null) {
+          debugBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder>(
+                  getDebug(),
+                  getParentForChildren(),
+                  isClean());
+          debug_ = null;
+        }
+        return debugBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3874,6 +7336,19 @@ public final class AuthenticationPb {
      * <code>.sdqube.entities.pb.User user = 2;</code>
      */
     com.sdqube.entities.AuthenticationPb.UserOrBuilder getUserOrBuilder();
+
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    boolean hasDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.Debug getDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder();
   }
   /**
    * Protobuf type {@code sdqube.entities.pb.LoginResponse}
@@ -3936,6 +7411,19 @@ public final class AuthenticationPb {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(user_);
                 user_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              com.sdqube.entities.CommonsPb.Debug.Builder subBuilder = null;
+              if (debug_ != null) {
+                subBuilder = debug_.toBuilder();
+              }
+              debug_ = input.readMessage(com.sdqube.entities.CommonsPb.Debug.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(debug_);
+                debug_ = subBuilder.buildPartial();
               }
 
               break;
@@ -4014,6 +7502,27 @@ public final class AuthenticationPb {
       return getUser();
     }
 
+    public static final int DEBUG_FIELD_NUMBER = 12;
+    private com.sdqube.entities.CommonsPb.Debug debug_;
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public boolean hasDebug() {
+      return debug_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Debug getDebug() {
+      return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+      return getDebug();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4034,6 +7543,9 @@ public final class AuthenticationPb {
       if (user_ != null) {
         output.writeMessage(2, getUser());
       }
+      if (debug_ != null) {
+        output.writeMessage(12, getDebug());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4050,6 +7562,10 @@ public final class AuthenticationPb {
       if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getUser());
+      }
+      if (debug_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDebug());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4077,6 +7593,11 @@ public final class AuthenticationPb {
         result = result && getUser()
             .equals(other.getUser());
       }
+      result = result && (hasDebug() == other.hasDebug());
+      if (hasDebug()) {
+        result = result && getDebug()
+            .equals(other.getDebug());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4095,6 +7616,10 @@ public final class AuthenticationPb {
       if (hasUser()) {
         hash = (37 * hash) + USER_FIELD_NUMBER;
         hash = (53 * hash) + getUser().hashCode();
+      }
+      if (hasDebug()) {
+        hash = (37 * hash) + DEBUG_FIELD_NUMBER;
+        hash = (53 * hash) + getDebug().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -4241,6 +7766,12 @@ public final class AuthenticationPb {
           user_ = null;
           userBuilder_ = null;
         }
+        if (debugBuilder_ == null) {
+          debug_ = null;
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
         return this;
       }
 
@@ -4276,6 +7807,11 @@ public final class AuthenticationPb {
           result.user_ = user_;
         } else {
           result.user_ = userBuilder_.build();
+        }
+        if (debugBuilder_ == null) {
+          result.debug_ = debug_;
+        } else {
+          result.debug_ = debugBuilder_.build();
         }
         onBuilt();
         return result;
@@ -4330,6 +7866,9 @@ public final class AuthenticationPb {
         }
         if (other.hasUser()) {
           mergeUser(other.getUser());
+        }
+        if (other.hasDebug()) {
+          mergeDebug(other.getDebug());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4593,6 +8132,123 @@ public final class AuthenticationPb {
         }
         return userBuilder_;
       }
+
+      private com.sdqube.entities.CommonsPb.Debug debug_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> debugBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public boolean hasDebug() {
+        return debugBuilder_ != null || debug_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug getDebug() {
+        if (debugBuilder_ == null) {
+          return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        } else {
+          return debugBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          debug_ = value;
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(
+          com.sdqube.entities.CommonsPb.Debug.Builder builderForValue) {
+        if (debugBuilder_ == null) {
+          debug_ = builderForValue.build();
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder mergeDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (debug_ != null) {
+            debug_ =
+              com.sdqube.entities.CommonsPb.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          } else {
+            debug_ = value;
+          }
+          onChanged();
+        } else {
+          debugBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder clearDebug() {
+        if (debugBuilder_ == null) {
+          debug_ = null;
+          onChanged();
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug.Builder getDebugBuilder() {
+        
+        onChanged();
+        return getDebugFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+        if (debugBuilder_ != null) {
+          return debugBuilder_.getMessageOrBuilder();
+        } else {
+          return debug_ == null ?
+              com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> 
+          getDebugFieldBuilder() {
+        if (debugBuilder_ == null) {
+          debugBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder>(
+                  getDebug(),
+                  getParentForChildren(),
+                  isClean());
+          debug_ = null;
+        }
+        return debugBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4646,6 +8302,871 @@ public final class AuthenticationPb {
 
   }
 
+  public interface AuthResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.AuthResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool granted = 1;</code>
+     */
+    boolean getGranted();
+
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    boolean hasSession();
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.Session getSession();
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.SessionOrBuilder getSessionOrBuilder();
+
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    boolean hasDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.Debug getDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder();
+  }
+  /**
+   * Protobuf type {@code sdqube.entities.pb.AuthResponse}
+   */
+  public  static final class AuthResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:sdqube.entities.pb.AuthResponse)
+      AuthResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use AuthResponse.newBuilder() to construct.
+    private AuthResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private AuthResponse() {
+      granted_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private AuthResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              granted_ = input.readBool();
+              break;
+            }
+            case 18: {
+              com.sdqube.entities.AuthenticationPb.Session.Builder subBuilder = null;
+              if (session_ != null) {
+                subBuilder = session_.toBuilder();
+              }
+              session_ = input.readMessage(com.sdqube.entities.AuthenticationPb.Session.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(session_);
+                session_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              com.sdqube.entities.CommonsPb.Debug.Builder subBuilder = null;
+              if (debug_ != null) {
+                subBuilder = debug_.toBuilder();
+              }
+              debug_ = input.readMessage(com.sdqube.entities.CommonsPb.Debug.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(debug_);
+                debug_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_AuthResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_AuthResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.sdqube.entities.AuthenticationPb.AuthResponse.class, com.sdqube.entities.AuthenticationPb.AuthResponse.Builder.class);
+    }
+
+    public static final int GRANTED_FIELD_NUMBER = 1;
+    private boolean granted_;
+    /**
+     * <code>bool granted = 1;</code>
+     */
+    public boolean getGranted() {
+      return granted_;
+    }
+
+    public static final int SESSION_FIELD_NUMBER = 2;
+    private com.sdqube.entities.AuthenticationPb.Session session_;
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    public boolean hasSession() {
+      return session_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.Session getSession() {
+      return session_ == null ? com.sdqube.entities.AuthenticationPb.Session.getDefaultInstance() : session_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Session session = 2;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.SessionOrBuilder getSessionOrBuilder() {
+      return getSession();
+    }
+
+    public static final int DEBUG_FIELD_NUMBER = 12;
+    private com.sdqube.entities.CommonsPb.Debug debug_;
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public boolean hasDebug() {
+      return debug_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Debug getDebug() {
+      return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+      return getDebug();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (granted_ != false) {
+        output.writeBool(1, granted_);
+      }
+      if (session_ != null) {
+        output.writeMessage(2, getSession());
+      }
+      if (debug_ != null) {
+        output.writeMessage(12, getDebug());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (granted_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, granted_);
+      }
+      if (session_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getSession());
+      }
+      if (debug_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDebug());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.sdqube.entities.AuthenticationPb.AuthResponse)) {
+        return super.equals(obj);
+      }
+      com.sdqube.entities.AuthenticationPb.AuthResponse other = (com.sdqube.entities.AuthenticationPb.AuthResponse) obj;
+
+      boolean result = true;
+      result = result && (getGranted()
+          == other.getGranted());
+      result = result && (hasSession() == other.hasSession());
+      if (hasSession()) {
+        result = result && getSession()
+            .equals(other.getSession());
+      }
+      result = result && (hasDebug() == other.hasDebug());
+      if (hasDebug()) {
+        result = result && getDebug()
+            .equals(other.getDebug());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + GRANTED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getGranted());
+      if (hasSession()) {
+        hash = (37 * hash) + SESSION_FIELD_NUMBER;
+        hash = (53 * hash) + getSession().hashCode();
+      }
+      if (hasDebug()) {
+        hash = (37 * hash) + DEBUG_FIELD_NUMBER;
+        hash = (53 * hash) + getDebug().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.sdqube.entities.AuthenticationPb.AuthResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code sdqube.entities.pb.AuthResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:sdqube.entities.pb.AuthResponse)
+        com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_AuthResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_AuthResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.sdqube.entities.AuthenticationPb.AuthResponse.class, com.sdqube.entities.AuthenticationPb.AuthResponse.Builder.class);
+      }
+
+      // Construct using com.sdqube.entities.AuthenticationPb.AuthResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        granted_ = false;
+
+        if (sessionBuilder_ == null) {
+          session_ = null;
+        } else {
+          session_ = null;
+          sessionBuilder_ = null;
+        }
+        if (debugBuilder_ == null) {
+          debug_ = null;
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.sdqube.entities.AuthenticationPb.internal_static_sdqube_entities_pb_AuthResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.AuthResponse getDefaultInstanceForType() {
+        return com.sdqube.entities.AuthenticationPb.AuthResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.AuthResponse build() {
+        com.sdqube.entities.AuthenticationPb.AuthResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.sdqube.entities.AuthenticationPb.AuthResponse buildPartial() {
+        com.sdqube.entities.AuthenticationPb.AuthResponse result = new com.sdqube.entities.AuthenticationPb.AuthResponse(this);
+        result.granted_ = granted_;
+        if (sessionBuilder_ == null) {
+          result.session_ = session_;
+        } else {
+          result.session_ = sessionBuilder_.build();
+        }
+        if (debugBuilder_ == null) {
+          result.debug_ = debug_;
+        } else {
+          result.debug_ = debugBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.sdqube.entities.AuthenticationPb.AuthResponse) {
+          return mergeFrom((com.sdqube.entities.AuthenticationPb.AuthResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.sdqube.entities.AuthenticationPb.AuthResponse other) {
+        if (other == com.sdqube.entities.AuthenticationPb.AuthResponse.getDefaultInstance()) return this;
+        if (other.getGranted() != false) {
+          setGranted(other.getGranted());
+        }
+        if (other.hasSession()) {
+          mergeSession(other.getSession());
+        }
+        if (other.hasDebug()) {
+          mergeDebug(other.getDebug());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.sdqube.entities.AuthenticationPb.AuthResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.sdqube.entities.AuthenticationPb.AuthResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean granted_ ;
+      /**
+       * <code>bool granted = 1;</code>
+       */
+      public boolean getGranted() {
+        return granted_;
+      }
+      /**
+       * <code>bool granted = 1;</code>
+       */
+      public Builder setGranted(boolean value) {
+        
+        granted_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool granted = 1;</code>
+       */
+      public Builder clearGranted() {
+        
+        granted_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.sdqube.entities.AuthenticationPb.Session session_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.Session, com.sdqube.entities.AuthenticationPb.Session.Builder, com.sdqube.entities.AuthenticationPb.SessionOrBuilder> sessionBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public boolean hasSession() {
+        return sessionBuilder_ != null || session_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.Session getSession() {
+        if (sessionBuilder_ == null) {
+          return session_ == null ? com.sdqube.entities.AuthenticationPb.Session.getDefaultInstance() : session_;
+        } else {
+          return sessionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public Builder setSession(com.sdqube.entities.AuthenticationPb.Session value) {
+        if (sessionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          session_ = value;
+          onChanged();
+        } else {
+          sessionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public Builder setSession(
+          com.sdqube.entities.AuthenticationPb.Session.Builder builderForValue) {
+        if (sessionBuilder_ == null) {
+          session_ = builderForValue.build();
+          onChanged();
+        } else {
+          sessionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public Builder mergeSession(com.sdqube.entities.AuthenticationPb.Session value) {
+        if (sessionBuilder_ == null) {
+          if (session_ != null) {
+            session_ =
+              com.sdqube.entities.AuthenticationPb.Session.newBuilder(session_).mergeFrom(value).buildPartial();
+          } else {
+            session_ = value;
+          }
+          onChanged();
+        } else {
+          sessionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public Builder clearSession() {
+        if (sessionBuilder_ == null) {
+          session_ = null;
+          onChanged();
+        } else {
+          session_ = null;
+          sessionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.Session.Builder getSessionBuilder() {
+        
+        onChanged();
+        return getSessionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.SessionOrBuilder getSessionOrBuilder() {
+        if (sessionBuilder_ != null) {
+          return sessionBuilder_.getMessageOrBuilder();
+        } else {
+          return session_ == null ?
+              com.sdqube.entities.AuthenticationPb.Session.getDefaultInstance() : session_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Session session = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.Session, com.sdqube.entities.AuthenticationPb.Session.Builder, com.sdqube.entities.AuthenticationPb.SessionOrBuilder> 
+          getSessionFieldBuilder() {
+        if (sessionBuilder_ == null) {
+          sessionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.AuthenticationPb.Session, com.sdqube.entities.AuthenticationPb.Session.Builder, com.sdqube.entities.AuthenticationPb.SessionOrBuilder>(
+                  getSession(),
+                  getParentForChildren(),
+                  isClean());
+          session_ = null;
+        }
+        return sessionBuilder_;
+      }
+
+      private com.sdqube.entities.CommonsPb.Debug debug_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> debugBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public boolean hasDebug() {
+        return debugBuilder_ != null || debug_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug getDebug() {
+        if (debugBuilder_ == null) {
+          return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        } else {
+          return debugBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          debug_ = value;
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(
+          com.sdqube.entities.CommonsPb.Debug.Builder builderForValue) {
+        if (debugBuilder_ == null) {
+          debug_ = builderForValue.build();
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder mergeDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (debug_ != null) {
+            debug_ =
+              com.sdqube.entities.CommonsPb.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          } else {
+            debug_ = value;
+          }
+          onChanged();
+        } else {
+          debugBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder clearDebug() {
+        if (debugBuilder_ == null) {
+          debug_ = null;
+          onChanged();
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug.Builder getDebugBuilder() {
+        
+        onChanged();
+        return getDebugFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+        if (debugBuilder_ != null) {
+          return debugBuilder_.getMessageOrBuilder();
+        } else {
+          return debug_ == null ?
+              com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> 
+          getDebugFieldBuilder() {
+        if (debugBuilder_ == null) {
+          debugBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder>(
+                  getDebug(),
+                  getParentForChildren(),
+                  isClean());
+          debug_ = null;
+        }
+        return debugBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:sdqube.entities.pb.AuthResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:sdqube.entities.pb.AuthResponse)
+    private static final com.sdqube.entities.AuthenticationPb.AuthResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.sdqube.entities.AuthenticationPb.AuthResponse();
+    }
+
+    public static com.sdqube.entities.AuthenticationPb.AuthResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AuthResponse>
+        PARSER = new com.google.protobuf.AbstractParser<AuthResponse>() {
+      @java.lang.Override
+      public AuthResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new AuthResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<AuthResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AuthResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.sdqube.entities.AuthenticationPb.AuthResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface AuthBaseRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:sdqube.entities.pb.AuthBaseRequest)
       com.google.protobuf.MessageOrBuilder {
@@ -4675,6 +9196,19 @@ public final class AuthenticationPb {
      * <code>.sdqube.entities.pb.GAuthorization authorization = 9;</code>
      */
     com.sdqube.entities.AuthenticationPb.GAuthorizationOrBuilder getAuthorizationOrBuilder();
+
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    boolean hasDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.Debug getDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder();
   }
   /**
    * Protobuf type {@code sdqube.entities.pb.AuthBaseRequest}
@@ -4737,6 +9271,19 @@ public final class AuthenticationPb {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(authorization_);
                 authorization_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              com.sdqube.entities.CommonsPb.Debug.Builder subBuilder = null;
+              if (debug_ != null) {
+                subBuilder = debug_.toBuilder();
+              }
+              debug_ = input.readMessage(com.sdqube.entities.CommonsPb.Debug.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(debug_);
+                debug_ = subBuilder.buildPartial();
               }
 
               break;
@@ -4815,6 +9362,27 @@ public final class AuthenticationPb {
       return getAuthorization();
     }
 
+    public static final int DEBUG_FIELD_NUMBER = 12;
+    private com.sdqube.entities.CommonsPb.Debug debug_;
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public boolean hasDebug() {
+      return debug_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Debug getDebug() {
+      return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+      return getDebug();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4835,6 +9403,9 @@ public final class AuthenticationPb {
       if (authorization_ != null) {
         output.writeMessage(9, getAuthorization());
       }
+      if (debug_ != null) {
+        output.writeMessage(12, getDebug());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4851,6 +9422,10 @@ public final class AuthenticationPb {
       if (authorization_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getAuthorization());
+      }
+      if (debug_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDebug());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4878,6 +9453,11 @@ public final class AuthenticationPb {
         result = result && getAuthorization()
             .equals(other.getAuthorization());
       }
+      result = result && (hasDebug() == other.hasDebug());
+      if (hasDebug()) {
+        result = result && getDebug()
+            .equals(other.getDebug());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4896,6 +9476,10 @@ public final class AuthenticationPb {
       if (hasAuthorization()) {
         hash = (37 * hash) + AUTHORIZATION_FIELD_NUMBER;
         hash = (53 * hash) + getAuthorization().hashCode();
+      }
+      if (hasDebug()) {
+        hash = (37 * hash) + DEBUG_FIELD_NUMBER;
+        hash = (53 * hash) + getDebug().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -5042,6 +9626,12 @@ public final class AuthenticationPb {
           authorization_ = null;
           authorizationBuilder_ = null;
         }
+        if (debugBuilder_ == null) {
+          debug_ = null;
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
         return this;
       }
 
@@ -5077,6 +9667,11 @@ public final class AuthenticationPb {
           result.authorization_ = authorization_;
         } else {
           result.authorization_ = authorizationBuilder_.build();
+        }
+        if (debugBuilder_ == null) {
+          result.debug_ = debug_;
+        } else {
+          result.debug_ = debugBuilder_.build();
         }
         onBuilt();
         return result;
@@ -5131,6 +9726,9 @@ public final class AuthenticationPb {
         }
         if (other.hasAuthorization()) {
           mergeAuthorization(other.getAuthorization());
+        }
+        if (other.hasDebug()) {
+          mergeDebug(other.getDebug());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5394,6 +9992,123 @@ public final class AuthenticationPb {
         }
         return authorizationBuilder_;
       }
+
+      private com.sdqube.entities.CommonsPb.Debug debug_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> debugBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public boolean hasDebug() {
+        return debugBuilder_ != null || debug_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug getDebug() {
+        if (debugBuilder_ == null) {
+          return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        } else {
+          return debugBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          debug_ = value;
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(
+          com.sdqube.entities.CommonsPb.Debug.Builder builderForValue) {
+        if (debugBuilder_ == null) {
+          debug_ = builderForValue.build();
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder mergeDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (debug_ != null) {
+            debug_ =
+              com.sdqube.entities.CommonsPb.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          } else {
+            debug_ = value;
+          }
+          onChanged();
+        } else {
+          debugBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder clearDebug() {
+        if (debugBuilder_ == null) {
+          debug_ = null;
+          onChanged();
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug.Builder getDebugBuilder() {
+        
+        onChanged();
+        return getDebugFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+        if (debugBuilder_ != null) {
+          return debugBuilder_.getMessageOrBuilder();
+        } else {
+          return debug_ == null ?
+              com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> 
+          getDebugFieldBuilder() {
+        if (debugBuilder_ == null) {
+          debugBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder>(
+                  getDebug(),
+                  getParentForChildren(),
+                  isClean());
+          debug_ = null;
+        }
+        return debugBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5472,6 +10187,19 @@ public final class AuthenticationPb {
     boolean getSuccess();
 
     /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    boolean hasAuthResponse();
+    /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.AuthResponse getAuthResponse();
+    /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder getAuthResponseOrBuilder();
+
+    /**
      * <code>.sdqube.entities.pb.LoginResponse loginResponse = 7;</code>
      */
     boolean hasLoginResponse();
@@ -5488,6 +10216,19 @@ public final class AuthenticationPb {
      * <code>int64 timestamp = 8;</code>
      */
     long getTimestamp();
+
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    boolean hasDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.Debug getDebug();
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder();
   }
   /**
    * Protobuf type {@code sdqube.entities.pb.AuthBaseResponse}
@@ -5564,6 +10305,32 @@ public final class AuthenticationPb {
             case 64: {
 
               timestamp_ = input.readInt64();
+              break;
+            }
+            case 74: {
+              com.sdqube.entities.AuthenticationPb.AuthResponse.Builder subBuilder = null;
+              if (authResponse_ != null) {
+                subBuilder = authResponse_.toBuilder();
+              }
+              authResponse_ = input.readMessage(com.sdqube.entities.AuthenticationPb.AuthResponse.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(authResponse_);
+                authResponse_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 98: {
+              com.sdqube.entities.CommonsPb.Debug.Builder subBuilder = null;
+              if (debug_ != null) {
+                subBuilder = debug_.toBuilder();
+              }
+              debug_ = input.readMessage(com.sdqube.entities.CommonsPb.Debug.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(debug_);
+                debug_ = subBuilder.buildPartial();
+              }
+
               break;
             }
             default: {
@@ -5650,6 +10417,27 @@ public final class AuthenticationPb {
       return success_;
     }
 
+    public static final int AUTHRESPONSE_FIELD_NUMBER = 9;
+    private com.sdqube.entities.AuthenticationPb.AuthResponse authResponse_;
+    /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    public boolean hasAuthResponse() {
+      return authResponse_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.AuthResponse getAuthResponse() {
+      return authResponse_ == null ? com.sdqube.entities.AuthenticationPb.AuthResponse.getDefaultInstance() : authResponse_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+     */
+    public com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder getAuthResponseOrBuilder() {
+      return getAuthResponse();
+    }
+
     public static final int LOGINRESPONSE_FIELD_NUMBER = 7;
     private com.sdqube.entities.AuthenticationPb.LoginResponse loginResponse_;
     /**
@@ -5678,6 +10466,27 @@ public final class AuthenticationPb {
      */
     public long getTimestamp() {
       return timestamp_;
+    }
+
+    public static final int DEBUG_FIELD_NUMBER = 12;
+    private com.sdqube.entities.CommonsPb.Debug debug_;
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public boolean hasDebug() {
+      return debug_ != null;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.Debug getDebug() {
+      return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+    }
+    /**
+     * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+     */
+    public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+      return getDebug();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5709,6 +10518,12 @@ public final class AuthenticationPb {
       if (timestamp_ != 0L) {
         output.writeInt64(8, timestamp_);
       }
+      if (authResponse_ != null) {
+        output.writeMessage(9, getAuthResponse());
+      }
+      if (debug_ != null) {
+        output.writeMessage(12, getDebug());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -5737,6 +10552,14 @@ public final class AuthenticationPb {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, timestamp_);
       }
+      if (authResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getAuthResponse());
+      }
+      if (debug_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getDebug());
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5759,6 +10582,11 @@ public final class AuthenticationPb {
           .equals(other.getMsg());
       result = result && (getSuccess()
           == other.getSuccess());
+      result = result && (hasAuthResponse() == other.hasAuthResponse());
+      if (hasAuthResponse()) {
+        result = result && getAuthResponse()
+            .equals(other.getAuthResponse());
+      }
       result = result && (hasLoginResponse() == other.hasLoginResponse());
       if (hasLoginResponse()) {
         result = result && getLoginResponse()
@@ -5766,6 +10594,11 @@ public final class AuthenticationPb {
       }
       result = result && (getTimestamp()
           == other.getTimestamp());
+      result = result && (hasDebug() == other.hasDebug());
+      if (hasDebug()) {
+        result = result && getDebug()
+            .equals(other.getDebug());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5785,6 +10618,10 @@ public final class AuthenticationPb {
       hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getSuccess());
+      if (hasAuthResponse()) {
+        hash = (37 * hash) + AUTHRESPONSE_FIELD_NUMBER;
+        hash = (53 * hash) + getAuthResponse().hashCode();
+      }
       if (hasLoginResponse()) {
         hash = (37 * hash) + LOGINRESPONSE_FIELD_NUMBER;
         hash = (53 * hash) + getLoginResponse().hashCode();
@@ -5792,6 +10629,10 @@ public final class AuthenticationPb {
       hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTimestamp());
+      if (hasDebug()) {
+        hash = (37 * hash) + DEBUG_FIELD_NUMBER;
+        hash = (53 * hash) + getDebug().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5931,6 +10772,12 @@ public final class AuthenticationPb {
 
         success_ = false;
 
+        if (authResponseBuilder_ == null) {
+          authResponse_ = null;
+        } else {
+          authResponse_ = null;
+          authResponseBuilder_ = null;
+        }
         if (loginResponseBuilder_ == null) {
           loginResponse_ = null;
         } else {
@@ -5939,6 +10786,12 @@ public final class AuthenticationPb {
         }
         timestamp_ = 0L;
 
+        if (debugBuilder_ == null) {
+          debug_ = null;
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
         return this;
       }
 
@@ -5968,12 +10821,22 @@ public final class AuthenticationPb {
         result.error_ = error_;
         result.msg_ = msg_;
         result.success_ = success_;
+        if (authResponseBuilder_ == null) {
+          result.authResponse_ = authResponse_;
+        } else {
+          result.authResponse_ = authResponseBuilder_.build();
+        }
         if (loginResponseBuilder_ == null) {
           result.loginResponse_ = loginResponse_;
         } else {
           result.loginResponse_ = loginResponseBuilder_.build();
         }
         result.timestamp_ = timestamp_;
+        if (debugBuilder_ == null) {
+          result.debug_ = debug_;
+        } else {
+          result.debug_ = debugBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -6032,11 +10895,17 @@ public final class AuthenticationPb {
         if (other.getSuccess() != false) {
           setSuccess(other.getSuccess());
         }
+        if (other.hasAuthResponse()) {
+          mergeAuthResponse(other.getAuthResponse());
+        }
         if (other.hasLoginResponse()) {
           mergeLoginResponse(other.getLoginResponse());
         }
         if (other.getTimestamp() != 0L) {
           setTimestamp(other.getTimestamp());
+        }
+        if (other.hasDebug()) {
+          mergeDebug(other.getDebug());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6188,6 +11057,123 @@ public final class AuthenticationPb {
         return this;
       }
 
+      private com.sdqube.entities.AuthenticationPb.AuthResponse authResponse_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.AuthResponse, com.sdqube.entities.AuthenticationPb.AuthResponse.Builder, com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder> authResponseBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public boolean hasAuthResponse() {
+        return authResponseBuilder_ != null || authResponse_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.AuthResponse getAuthResponse() {
+        if (authResponseBuilder_ == null) {
+          return authResponse_ == null ? com.sdqube.entities.AuthenticationPb.AuthResponse.getDefaultInstance() : authResponse_;
+        } else {
+          return authResponseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public Builder setAuthResponse(com.sdqube.entities.AuthenticationPb.AuthResponse value) {
+        if (authResponseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          authResponse_ = value;
+          onChanged();
+        } else {
+          authResponseBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public Builder setAuthResponse(
+          com.sdqube.entities.AuthenticationPb.AuthResponse.Builder builderForValue) {
+        if (authResponseBuilder_ == null) {
+          authResponse_ = builderForValue.build();
+          onChanged();
+        } else {
+          authResponseBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public Builder mergeAuthResponse(com.sdqube.entities.AuthenticationPb.AuthResponse value) {
+        if (authResponseBuilder_ == null) {
+          if (authResponse_ != null) {
+            authResponse_ =
+              com.sdqube.entities.AuthenticationPb.AuthResponse.newBuilder(authResponse_).mergeFrom(value).buildPartial();
+          } else {
+            authResponse_ = value;
+          }
+          onChanged();
+        } else {
+          authResponseBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public Builder clearAuthResponse() {
+        if (authResponseBuilder_ == null) {
+          authResponse_ = null;
+          onChanged();
+        } else {
+          authResponse_ = null;
+          authResponseBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.AuthResponse.Builder getAuthResponseBuilder() {
+        
+        onChanged();
+        return getAuthResponseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      public com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder getAuthResponseOrBuilder() {
+        if (authResponseBuilder_ != null) {
+          return authResponseBuilder_.getMessageOrBuilder();
+        } else {
+          return authResponse_ == null ?
+              com.sdqube.entities.AuthenticationPb.AuthResponse.getDefaultInstance() : authResponse_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.AuthResponse authResponse = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.AuthenticationPb.AuthResponse, com.sdqube.entities.AuthenticationPb.AuthResponse.Builder, com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder> 
+          getAuthResponseFieldBuilder() {
+        if (authResponseBuilder_ == null) {
+          authResponseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.AuthenticationPb.AuthResponse, com.sdqube.entities.AuthenticationPb.AuthResponse.Builder, com.sdqube.entities.AuthenticationPb.AuthResponseOrBuilder>(
+                  getAuthResponse(),
+                  getParentForChildren(),
+                  isClean());
+          authResponse_ = null;
+        }
+        return authResponseBuilder_;
+      }
+
       private com.sdqube.entities.AuthenticationPb.LoginResponse loginResponse_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.sdqube.entities.AuthenticationPb.LoginResponse, com.sdqube.entities.AuthenticationPb.LoginResponse.Builder, com.sdqube.entities.AuthenticationPb.LoginResponseOrBuilder> loginResponseBuilder_;
@@ -6330,6 +11316,123 @@ public final class AuthenticationPb {
         onChanged();
         return this;
       }
+
+      private com.sdqube.entities.CommonsPb.Debug debug_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> debugBuilder_;
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public boolean hasDebug() {
+        return debugBuilder_ != null || debug_ != null;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug getDebug() {
+        if (debugBuilder_ == null) {
+          return debug_ == null ? com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        } else {
+          return debugBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          debug_ = value;
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder setDebug(
+          com.sdqube.entities.CommonsPb.Debug.Builder builderForValue) {
+        if (debugBuilder_ == null) {
+          debug_ = builderForValue.build();
+          onChanged();
+        } else {
+          debugBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder mergeDebug(com.sdqube.entities.CommonsPb.Debug value) {
+        if (debugBuilder_ == null) {
+          if (debug_ != null) {
+            debug_ =
+              com.sdqube.entities.CommonsPb.Debug.newBuilder(debug_).mergeFrom(value).buildPartial();
+          } else {
+            debug_ = value;
+          }
+          onChanged();
+        } else {
+          debugBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public Builder clearDebug() {
+        if (debugBuilder_ == null) {
+          debug_ = null;
+          onChanged();
+        } else {
+          debug_ = null;
+          debugBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.Debug.Builder getDebugBuilder() {
+        
+        onChanged();
+        return getDebugFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      public com.sdqube.entities.CommonsPb.DebugOrBuilder getDebugOrBuilder() {
+        if (debugBuilder_ != null) {
+          return debugBuilder_.getMessageOrBuilder();
+        } else {
+          return debug_ == null ?
+              com.sdqube.entities.CommonsPb.Debug.getDefaultInstance() : debug_;
+        }
+      }
+      /**
+       * <code>.sdqube.entities.pb.Debug debug = 12;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder> 
+          getDebugFieldBuilder() {
+        if (debugBuilder_ == null) {
+          debugBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.sdqube.entities.CommonsPb.Debug, com.sdqube.entities.CommonsPb.Debug.Builder, com.sdqube.entities.CommonsPb.DebugOrBuilder>(
+                  getDebug(),
+                  getParentForChildren(),
+                  isClean());
+          debug_ = null;
+        }
+        return debugBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6404,6 +11507,16 @@ public final class AuthenticationPb {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sdqube_entities_pb_GAuthorization_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sdqube_entities_pb_Role_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sdqube_entities_pb_Role_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sdqube_entities_pb_Session_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sdqube_entities_pb_Session_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_sdqube_entities_pb_LoginRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -6413,6 +11526,11 @@ public final class AuthenticationPb {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_sdqube_entities_pb_LoginResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_sdqube_entities_pb_AuthResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_sdqube_entities_pb_AuthResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_sdqube_entities_pb_AuthBaseRequest_descriptor;
   private static final 
@@ -6433,29 +11551,57 @@ public final class AuthenticationPb {
   static {
     java.lang.String[] descriptorData = {
       "\n\024authentication.proto\022\022sdqube.entities." +
-      "pb\"/\n\004User\022\025\n\rusernameEmail\030\001 \001(\t\022\020\n\010pas" +
-      "sword\030\002 \001(\t\"\'\n\013Coordinates\022\013\n\003lat\030\001 \001(\t\022" +
-      "\013\n\003lon\030\002 \001(\t\"t\n\010Location\022\017\n\007country\030\001 \001(" +
-      "\t\022\014\n\004city\030\002 \001(\t\022\023\n\013postal_code\030\003 \001(\t\0224\n\013" +
-      "coordinates\030\004 \001(\0132\037.sdqube.entities.pb.C" +
-      "oordinates\"\037\n\016GAuthorization\022\r\n\005token\030\001 " +
-      "\001(\t\"g\n\014LoginRequest\022\025\n\rusernameEmail\030\001 \001" +
-      "(\t\022\020\n\010password\030\002 \001(\t\022.\n\010location\030\013 \001(\0132\034" +
-      ".sdqube.entities.pb.Location\"r\n\rLoginRes" +
-      "ponse\0229\n\rauthorization\030\001 \001(\0132\".sdqube.en" +
-      "tities.pb.GAuthorization\022&\n\004user\030\002 \001(\0132\030" +
-      ".sdqube.entities.pb.User\"\204\001\n\017AuthBaseReq" +
-      "uest\0226\n\014loginRequest\030\010 \001(\0132 .sdqube.enti" +
-      "ties.pb.LoginRequest\0229\n\rauthorization\030\t " +
-      "\001(\0132\".sdqube.entities.pb.GAuthorization\"" +
-      "\214\001\n\020AuthBaseResponse\022\r\n\005error\030\001 \001(\010\022\013\n\003m" +
-      "sg\030\002 \001(\t\022\017\n\007success\030\004 \001(\010\0228\n\rloginRespon" +
-      "se\030\007 \001(\0132!.sdqube.entities.pb.LoginRespo" +
-      "nse\022\021\n\ttimestamp\030\010 \001(\0032i\n\021Authentication" +
-      "Rpc\022T\n\005login\022#.sdqube.entities.pb.AuthBa" +
-      "seRequest\032$.sdqube.entities.pb.AuthBaseR" +
-      "esponse\"\000B*\n\023com.sdqube.entitiesB\020Authen" +
-      "ticationPb\240\001\001b\006proto3"
+      "pb\032\rcommons.proto\"M\n\004User\022\020\n\010username\030\001 " +
+      "\001(\t\022\r\n\005email\030\002 \001(\t\022\021\n\tcreatedAt\030\003 \001(\003\022\021\n" +
+      "\tupdatedAt\030\004 \001(\003\"\'\n\013Coordinates\022\013\n\003lat\030\001" +
+      " \001(\t\022\013\n\003lon\030\002 \001(\t\"t\n\010Location\022\017\n\007country" +
+      "\030\001 \001(\t\022\014\n\004city\030\002 \001(\t\022\023\n\013postal_code\030\003 \001(" +
+      "\t\0224\n\013coordinates\030\004 \001(\0132\037.sdqube.entities" +
+      ".pb.Coordinates\"S\n\016GAuthorization\022\r\n\005tok" +
+      "en\030\001 \001(\t\0222\n\npermission\030\002 \001(\0132\036.sdqube.en" +
+      "tities.pb.Permission\"\257\001\n\004Role\022\016\n\006roleId\030" +
+      "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022.\n\010roleType\030\003 \001(\0162\034." +
+      "sdqube.entities.pb.RoleType\0223\n\013permissio" +
+      "ns\030\004 \003(\0132\036.sdqube.entities.pb.Permission" +
+      "\022\021\n\tcreatedAt\030\016 \001(\003\022\021\n\tupdatedAt\030\017 \001(\003\"\301" +
+      "\001\n\007Session\022\021\n\tsessionId\030\001 \001(\t\022\016\n\006userId\030" +
+      "\003 \001(\t\022\n\n\002ip\030\007 \001(\t\022\016\n\006active\030\t \001(\010\022&\n\004use" +
+      "r\030\n \001(\0132\030.sdqube.entities.pb.User\022&\n\004rol" +
+      "e\030\016 \001(\0132\030.sdqube.entities.pb.Role\022\024\n\014bui" +
+      "ldVersion\030\023 \001(\t\022\021\n\ttimestamp\030\010 \001(\003\"\221\001\n\014L" +
+      "oginRequest\022\025\n\rusernameEmail\030\001 \001(\t\022\020\n\010pa" +
+      "ssword\030\002 \001(\t\022.\n\010location\030\013 \001(\0132\034.sdqube." +
+      "entities.pb.Location\022(\n\005debug\030\014 \001(\0132\031.sd" +
+      "qube.entities.pb.Debug\"\234\001\n\rLoginResponse" +
+      "\0229\n\rauthorization\030\001 \001(\0132\".sdqube.entitie" +
+      "s.pb.GAuthorization\022&\n\004user\030\002 \001(\0132\030.sdqu" +
+      "be.entities.pb.User\022(\n\005debug\030\014 \001(\0132\031.sdq" +
+      "ube.entities.pb.Debug\"w\n\014AuthResponse\022\017\n" +
+      "\007granted\030\001 \001(\010\022,\n\007session\030\002 \001(\0132\033.sdqube" +
+      ".entities.pb.Session\022(\n\005debug\030\014 \001(\0132\031.sd" +
+      "qube.entities.pb.Debug\"\256\001\n\017AuthBaseReque" +
+      "st\0226\n\014loginRequest\030\010 \001(\0132 .sdqube.entiti" +
+      "es.pb.LoginRequest\0229\n\rauthorization\030\t \001(" +
+      "\0132\".sdqube.entities.pb.GAuthorization\022(\n" +
+      "\005debug\030\014 \001(\0132\031.sdqube.entities.pb.Debug\"" +
+      "\356\001\n\020AuthBaseResponse\022\r\n\005error\030\001 \001(\010\022\013\n\003m" +
+      "sg\030\002 \001(\t\022\017\n\007success\030\004 \001(\010\0226\n\014authRespons" +
+      "e\030\t \001(\0132 .sdqube.entities.pb.AuthRespons" +
+      "e\0228\n\rloginResponse\030\007 \001(\0132!.sdqube.entiti" +
+      "es.pb.LoginResponse\022\021\n\ttimestamp\030\010 \001(\003\022(" +
+      "\n\005debug\030\014 \001(\0132\031.sdqube.entities.pb.Debug" +
+      "*\211\001\n\010RoleType\022\020\n\014UNKNOWN_ROLE\020\000\022\017\n\013SUPER" +
+      "_ADMIN\020\001\022\t\n\005ADMIN\020\002\022\013\n\007MANAGER\020\003\022\014\n\010EMPL" +
+      "OYEE\020\004\022\017\n\013TAX_ADVISOR\020\005\022\023\n\017FINANCE_ADVIS" +
+      "OR\020\006\022\016\n\nACCOUNTANT\020\0072\232\002\n\021AuthenticationR" +
+      "pc\022X\n\tauthorize\022#.sdqube.entities.pb.Aut" +
+      "hBaseRequest\032$.sdqube.entities.pb.AuthBa" +
+      "seResponse\"\000\022T\n\005login\022#.sdqube.entities." +
+      "pb.AuthBaseRequest\032$.sdqube.entities.pb." +
+      "AuthBaseResponse\"\000\022U\n\006logout\022#.sdqube.en" +
+      "tities.pb.AuthBaseRequest\032$.sdqube.entit" +
+      "ies.pb.AuthBaseResponse\"\000B*\n\023com.sdqube." +
+      "entitiesB\020AuthenticationPb\240\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -6468,13 +11614,14 @@ public final class AuthenticationPb {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.sdqube.entities.CommonsPb.getDescriptor(),
         }, assigner);
     internal_static_sdqube_entities_pb_User_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_sdqube_entities_pb_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_User_descriptor,
-        new java.lang.String[] { "UsernameEmail", "Password", });
+        new java.lang.String[] { "Username", "Email", "CreatedAt", "UpdatedAt", });
     internal_static_sdqube_entities_pb_Coordinates_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_sdqube_entities_pb_Coordinates_fieldAccessorTable = new
@@ -6492,31 +11639,50 @@ public final class AuthenticationPb {
     internal_static_sdqube_entities_pb_GAuthorization_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_GAuthorization_descriptor,
-        new java.lang.String[] { "Token", });
-    internal_static_sdqube_entities_pb_LoginRequest_descriptor =
+        new java.lang.String[] { "Token", "Permission", });
+    internal_static_sdqube_entities_pb_Role_descriptor =
       getDescriptor().getMessageTypes().get(4);
+    internal_static_sdqube_entities_pb_Role_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sdqube_entities_pb_Role_descriptor,
+        new java.lang.String[] { "RoleId", "Name", "RoleType", "Permissions", "CreatedAt", "UpdatedAt", });
+    internal_static_sdqube_entities_pb_Session_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_sdqube_entities_pb_Session_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sdqube_entities_pb_Session_descriptor,
+        new java.lang.String[] { "SessionId", "UserId", "Ip", "Active", "User", "Role", "BuildVersion", "Timestamp", });
+    internal_static_sdqube_entities_pb_LoginRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_sdqube_entities_pb_LoginRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_LoginRequest_descriptor,
-        new java.lang.String[] { "UsernameEmail", "Password", "Location", });
+        new java.lang.String[] { "UsernameEmail", "Password", "Location", "Debug", });
     internal_static_sdqube_entities_pb_LoginResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_sdqube_entities_pb_LoginResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_LoginResponse_descriptor,
-        new java.lang.String[] { "Authorization", "User", });
+        new java.lang.String[] { "Authorization", "User", "Debug", });
+    internal_static_sdqube_entities_pb_AuthResponse_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_sdqube_entities_pb_AuthResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_sdqube_entities_pb_AuthResponse_descriptor,
+        new java.lang.String[] { "Granted", "Session", "Debug", });
     internal_static_sdqube_entities_pb_AuthBaseRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_sdqube_entities_pb_AuthBaseRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_AuthBaseRequest_descriptor,
-        new java.lang.String[] { "LoginRequest", "Authorization", });
+        new java.lang.String[] { "LoginRequest", "Authorization", "Debug", });
     internal_static_sdqube_entities_pb_AuthBaseResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_sdqube_entities_pb_AuthBaseResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sdqube_entities_pb_AuthBaseResponse_descriptor,
-        new java.lang.String[] { "Error", "Msg", "Success", "LoginResponse", "Timestamp", });
+        new java.lang.String[] { "Error", "Msg", "Success", "AuthResponse", "LoginResponse", "Timestamp", "Debug", });
+    com.sdqube.entities.CommonsPb.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

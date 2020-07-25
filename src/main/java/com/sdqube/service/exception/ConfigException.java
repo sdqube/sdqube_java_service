@@ -1,14 +1,14 @@
 package com.sdqube.service.exception;
 
-class ConfigException extends Exception {
+public class ConfigException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    ConfigException(Throwable throwable) {
+    public ConfigException(Throwable throwable) {
         super(throwable);
     }
 
-    ConfigException(String msg) {
+    public ConfigException(String msg) {
         super(msg);
     }
 }

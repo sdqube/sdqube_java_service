@@ -31,6 +31,38 @@ public final class AuthenticationRpcGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+      com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getAuthorizeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "authorize",
+      requestType = com.sdqube.entities.AuthenticationPb.AuthBaseRequest.class,
+      responseType = com.sdqube.entities.AuthenticationPb.AuthBaseResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+      com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getAuthorizeMethod() {
+    io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest, com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getAuthorizeMethod;
+    if ((getAuthorizeMethod = AuthenticationRpcGrpc.getAuthorizeMethod) == null) {
+      synchronized (AuthenticationRpcGrpc.class) {
+        if ((getAuthorizeMethod = AuthenticationRpcGrpc.getAuthorizeMethod) == null) {
+          AuthenticationRpcGrpc.getAuthorizeMethod = getAuthorizeMethod = 
+              io.grpc.MethodDescriptor.<com.sdqube.entities.AuthenticationPb.AuthBaseRequest, com.sdqube.entities.AuthenticationPb.AuthBaseResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "sdqube.entities.pb.AuthenticationRpc", "authorize"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sdqube.entities.AuthenticationPb.AuthBaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sdqube.entities.AuthenticationPb.AuthBaseResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new AuthenticationRpcMethodDescriptorSupplier("authorize"))
+                  .build();
+          }
+        }
+     }
+     return getAuthorizeMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
       com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getLoginMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
@@ -60,6 +92,38 @@ public final class AuthenticationRpcGrpc {
         }
      }
      return getLoginMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+      com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getLogoutMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "logout",
+      requestType = com.sdqube.entities.AuthenticationPb.AuthBaseRequest.class,
+      responseType = com.sdqube.entities.AuthenticationPb.AuthBaseResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+      com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getLogoutMethod() {
+    io.grpc.MethodDescriptor<com.sdqube.entities.AuthenticationPb.AuthBaseRequest, com.sdqube.entities.AuthenticationPb.AuthBaseResponse> getLogoutMethod;
+    if ((getLogoutMethod = AuthenticationRpcGrpc.getLogoutMethod) == null) {
+      synchronized (AuthenticationRpcGrpc.class) {
+        if ((getLogoutMethod = AuthenticationRpcGrpc.getLogoutMethod) == null) {
+          AuthenticationRpcGrpc.getLogoutMethod = getLogoutMethod = 
+              io.grpc.MethodDescriptor.<com.sdqube.entities.AuthenticationPb.AuthBaseRequest, com.sdqube.entities.AuthenticationPb.AuthBaseResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "sdqube.entities.pb.AuthenticationRpc", "logout"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sdqube.entities.AuthenticationPb.AuthBaseRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.sdqube.entities.AuthenticationPb.AuthBaseResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new AuthenticationRpcMethodDescriptorSupplier("logout"))
+                  .build();
+          }
+        }
+     }
+     return getLogoutMethod;
   }
 
   /**
@@ -94,13 +158,34 @@ public final class AuthenticationRpcGrpc {
 
     /**
      */
+    public void authorize(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
+        io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getAuthorizeMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void login(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
         io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void logout(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
+        io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLogoutMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+          .addMethod(
+            getAuthorizeMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+                com.sdqube.entities.AuthenticationPb.AuthBaseResponse>(
+                  this, METHODID_AUTHORIZE)))
           .addMethod(
             getLoginMethod(),
             asyncUnaryCall(
@@ -108,6 +193,13 @@ public final class AuthenticationRpcGrpc {
                 com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
                 com.sdqube.entities.AuthenticationPb.AuthBaseResponse>(
                   this, METHODID_LOGIN)))
+          .addMethod(
+            getLogoutMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.sdqube.entities.AuthenticationPb.AuthBaseRequest,
+                com.sdqube.entities.AuthenticationPb.AuthBaseResponse>(
+                  this, METHODID_LOGOUT)))
           .build();
     }
   }
@@ -135,10 +227,26 @@ public final class AuthenticationRpcGrpc {
 
     /**
      */
+    public void authorize(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
+        io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getAuthorizeMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void login(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
         io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void logout(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request,
+        io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLogoutMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -165,9 +273,23 @@ public final class AuthenticationRpcGrpc {
 
     /**
      */
+    public com.sdqube.entities.AuthenticationPb.AuthBaseResponse authorize(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getAuthorizeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public com.sdqube.entities.AuthenticationPb.AuthBaseResponse login(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
       return blockingUnaryCall(
           getChannel(), getLoginMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.sdqube.entities.AuthenticationPb.AuthBaseResponse logout(com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLogoutMethod(), getCallOptions(), request);
     }
   }
 
@@ -194,14 +316,32 @@ public final class AuthenticationRpcGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> authorize(
+        com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getAuthorizeMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> login(
         com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLoginMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.sdqube.entities.AuthenticationPb.AuthBaseResponse> logout(
+        com.sdqube.entities.AuthenticationPb.AuthBaseRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLogoutMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_LOGIN = 0;
+  private static final int METHODID_AUTHORIZE = 0;
+  private static final int METHODID_LOGIN = 1;
+  private static final int METHODID_LOGOUT = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -220,8 +360,16 @@ public final class AuthenticationRpcGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_AUTHORIZE:
+          serviceImpl.authorize((com.sdqube.entities.AuthenticationPb.AuthBaseRequest) request,
+              (io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse>) responseObserver);
+          break;
         case METHODID_LOGIN:
           serviceImpl.login((com.sdqube.entities.AuthenticationPb.AuthBaseRequest) request,
+              (io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse>) responseObserver);
+          break;
+        case METHODID_LOGOUT:
+          serviceImpl.logout((com.sdqube.entities.AuthenticationPb.AuthBaseRequest) request,
               (io.grpc.stub.StreamObserver<com.sdqube.entities.AuthenticationPb.AuthBaseResponse>) responseObserver);
           break;
         default:
@@ -285,7 +433,9 @@ public final class AuthenticationRpcGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new AuthenticationRpcFileDescriptorSupplier())
+              .addMethod(getAuthorizeMethod())
               .addMethod(getLoginMethod())
+              .addMethod(getLogoutMethod())
               .build();
         }
       }

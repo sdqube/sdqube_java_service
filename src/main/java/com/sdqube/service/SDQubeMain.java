@@ -1,6 +1,7 @@
 package com.sdqube.service;
 
-import com.sdqube.service.exception.Config;
+import com.sdqube.service.grpc.Main;
+import com.sdqube.service.logger.SDQubeLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ import java.net.Socket;
  * Date: 7/22/20 12:20 AM
  */
 public abstract class SDQubeMain implements Main {
-    private static final Logger logger = LoggerFactory.getLogger(SDQubeMain.class);
+    private static final SDQubeLogger logger = SDQubeLogger.getLogger(SDQubeMain.class);
     private static final int port = Config.getInstance().getInt("sdqube.main.port", 9001);
     private Thread server;
 
