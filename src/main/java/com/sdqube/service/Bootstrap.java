@@ -1,6 +1,6 @@
 package com.sdqube.service;
 
-import com.sdqube.service.exception.Config;
+import com.sdqube.service.grpc.Main;
 import com.sdqube.service.utils.SDQubeDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

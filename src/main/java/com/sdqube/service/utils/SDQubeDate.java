@@ -14,6 +14,7 @@ public class SDQubeDate {
     public SDQubeDate() {
         dateTime = new DateTime(DateTimeZone.UTC);
     }
+
     public long getTimestamp() {
         return this.dateTime.getMillis();
     }

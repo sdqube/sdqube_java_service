@@ -9,6 +9,7 @@ targetCompatibility = 1.8
 def protobufVersion = '1.19.0'
 def sl4jVersion = '1.7.25'
 def logbackVersion = '1.2.3'
+def tomcatJDBCVersion = '9.0.13'
 def commonConfigVersion = '2.4'
 def jodaVersion = '2.10.1'
 
@@ -29,4 +30,10 @@ dependencies {
     runtime group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
     compile group: 'org.apache.commons', name: 'commons-configuration2', version: commonConfigVersion
     compile group: 'joda-time', name: 'joda-time', version: jodaVersion
+
+    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: tomcatJDBCVersion
+    compile group: 'org.apache.commons', name: 'commons-configuration2', version: commonConfigVersion
+    // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+
 }
