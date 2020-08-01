@@ -6,6 +6,7 @@ import com.sdqube.entities.AuthenticationRpcGrpc;
 import com.sdqube.entities.CommonsPb;
 import com.sdqube.service.exception.AuthException;
 import com.sdqube.service.exception.PermissionException;
+import com.sdqube.service.utils.SDQubeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
@@ -20,6 +21,7 @@ public abstract class GrpcServiceAbstract<T extends Message> implements Service<
     public GrpcServiceAbstract(){
         authServiceCall = null;
     }
+
     public GrpcServiceAbstract(final AuthenticationRpcGrpc.AuthenticationRpcBlockingStub authServiceCall) {
         this.authServiceCall = authServiceCall;
     }
@@ -27,12 +29,19 @@ public abstract class GrpcServiceAbstract<T extends Message> implements Service<
     public abstract T error(CommonsPb.ErrorCode errorCode, String msg);
 
     public AuthenticationPb.AuthResponse authorize(AuthenticationPb.GAuthorization authorization,
+                                                   CommonsPb.Debug debug,
                                                    String permission) throws AuthException, PermissionException {
         AuthenticationPb.GAuthorization auth = authorization.toBuilder()
                 .setPermission(CommonsPb.Permission.newBuilder()
                         .setName(permission).build()).build();
-        AuthenticationPb.AuthBaseResponse response = authServiceCall.authorize(AuthenticationPb.AuthBaseRequest.newBuilder()
-                .setAuthorization(auth).build());
+        AuthenticationPb.AuthBaseResponse response = null;
+        if (null != authServiceCall)
+            response = authServiceCall.authorize(AuthenticationPb.AuthBaseRequest.newBuilder()
+                    .setAuthorization(auth)
+                    .setDebug(debug)
+                    .build());
+        System.out.println("response = " + response);
+
         if (null == response) {
             throw new AuthException();
         }
